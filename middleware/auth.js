@@ -17,6 +17,26 @@ const authToken = (req, res, next) => {
 };
 
 
+const adminToken = (req,res,next) =>{
+  const cookie = req.cookies
+  // if(cookie){
+    console.log(cookie.token)
+    try {
+      const decoded = jwt.verify(cookie.token, process.env.JWT_SECRET);
+      req.user = decoded;
+    } catch (err) {
+      res.redirect("./login")
+      // return res.status(401).send('Invalid cookie');
+    }
+    return next();
+    
+    
+   
+
+}
+
+
 module.exports = {
-  authToken
+  authToken,
+  adminToken
 };
