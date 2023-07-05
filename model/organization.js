@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-
-const adminSchema = mongoose.Schema({
-  employeeId: {
+const organizationSchema = mongoose.Schema({
+  orgId: {
     type:Number,
     unique: true,
   },
-  name: {
+  orgname: {
     type: String
   },
   email: {
     type: String,
+    unique: true,
     trim: true,
     lowercase: true
   },
@@ -27,38 +27,59 @@ const adminSchema = mongoose.Schema({
   },
   username: {
     type: String,
-    trim: true,
+    trim: true
   },
-  role: {
+  contactnumber: {
     type: String,
     trim: true,
-    enum: ['superadmin', 'admin']
+    lowercase: true
   },
-  gender: {
-    type: String,
-    trim: true,
-    enum: ['male', 'female']
+  address:{
+    type:String,
+    trim:true
   },
-
+  gstno:{
+    type:String
+  },
+  website:{
+    type:String
+  },
+  country:{
+    type:String,
+    default:"India"
+  },
+  pincode:{
+    type:Number,
+    required:true
+  },
+  yor:{
+    type:Number
+  },
+  state:{
+    type:String
+  },
+  contactperson:{
+    type:String
+  }
 
 }); 
 
-adminSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+organizationSchema.statics.isEmailTaken = async function (email, excludeUserId) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
   return !!user;
 };
 
-adminSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
+organizationSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
   const user = await this.findOne({ username, _id: { $ne: excludeUserId } });
   return !!user;
 };
 
-adminSchema.methods.isPasswordMatch = async function (password) {
+organizationSchema.methods.isPasswordMatch = async function (password) {
   const user = this;
   return bcrypt.compare(password, user.password);
 };
 
-adminSchema.pre('save', async function (next) {
+organizationSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
@@ -66,9 +87,11 @@ adminSchema.pre('save', async function (next) {
   next();
 });
  
-const Admin = mongoose.model('AdminUser', adminSchema);
+const OrganizationModel = mongoose.model('Organization', organizationSchema);
+
+
 
 
 module.exports = {
-  Admin,
+  OrganizationModel,
 };

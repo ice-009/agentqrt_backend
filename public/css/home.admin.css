@@ -56,3 +56,8 @@ input[type='radio']:checked+label+.content {
 input[type='radio']:checked+label::before {
     content: '-';
 }
+
+
+.contentlist {
+    padding:0.3rem;
+}

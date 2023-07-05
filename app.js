@@ -11,7 +11,7 @@ const path = require('path')
 const hbs = require('hbs')
 const bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser");
-
+const process = require('process')
 
 const app = express()
 app.use(cookieParser());
@@ -51,3 +51,4 @@ app.listen(port, () => {
   console.log(`Server is up at port ${port}`);
   connectDatabase();
 }); 
+
