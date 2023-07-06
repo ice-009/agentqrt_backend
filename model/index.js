@@ -5,4 +5,5 @@ module.exports.EmployeeModel = require('./user')
 module.exports.AdminModel = require('./admin')
 module.exports.Zone = require('./zone')
 module.exports.Organization = require('./organization')
-
+module.exports.Distributor = require('./distributor')
+module.exports.Warehouse = require('./warehouse')

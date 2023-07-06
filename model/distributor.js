@@ -58,7 +58,7 @@ const distributorSchema = mongoose.Schema({
   },
   parentzoneid:{
     type:Number
-  }
+  },
 
 }); 
 

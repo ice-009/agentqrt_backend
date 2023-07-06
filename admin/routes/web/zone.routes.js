@@ -1,10 +1,9 @@
 const express = require('express');
-const { authToken, adminToken } = require('../../../middleware/auth');
-const { AdminZoneController, AdminOrganizationController } = require('../../controller');
+const { adminToken } = require('../../../middleware/auth');
+const { AdminZoneController } = require('../../controller');
 
 
 const router = express.Router();
-
 
 router.get(
     '/:id',
@@ -17,6 +16,5 @@ router.get(
   adminToken,
   AdminZoneController.homeZone
 )
-
 
 module.exports = router;

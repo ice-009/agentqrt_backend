@@ -3,6 +3,9 @@ const adminRoute = require('../../admin/routes/web/admin.routes')
 const adminUserRoute = require('../../admin/routes/web/user.routes')
 const adminOrganizationRoute = require('../../admin/routes/web/organization.routes')
 const adminZoneRoute = require("../../admin/routes/web/zone.routes")
+const adminDistributorRoute = require("../../admin/routes/web/distributor.routes")
+
+
 const defaultRoutes = [
     {
       path:'/admin',
@@ -19,8 +22,15 @@ const defaultRoutes = [
     {
       path:"/admin/zone",
       route:adminZoneRoute
+    },
+    {
+      path:"/admin/distributor",
+      route:adminDistributorRoute
     }
-  ];
+  ]
+
+
+
 
 defaultRoutes.forEach((route) => {
 router.use(route.path, route.route);

@@ -4,14 +4,14 @@ const ApiError = require('../../utils/ApiError');
 const { Zone } = require("../../model/");
 
 
-const createDistributor = async(zoneid,body)=>{
-    console.log(body)
-}
+// const createDistributor = async(zoneid,body)=>{
+//     console.log(body)
+// }
 
 
-const createWarehouse  = async(zoneid,body)=>{
-    console.log(body)
-}
+// const createWarehouse  = async(zoneid,body)=>{
+//     console.log(body)
+// }
 
 const getByZoneIdname = async (id) => {
 
@@ -25,7 +25,5 @@ const getByZoneIdname = async (id) => {
 
 
 module.exports = {
-    createDistributor,
-    createWarehouse,
     getByZoneIdname
 }

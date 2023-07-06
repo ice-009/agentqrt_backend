@@ -23,6 +23,10 @@ const zoneSchema = mongoose.Schema({
   distributor:[{
     type:String,
     trim:true
+  }],
+  warehouse:[{
+    type:String,
+    trim:true
   }]
 
 });
