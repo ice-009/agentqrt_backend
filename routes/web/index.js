@@ -2,7 +2,7 @@ const router = require('express').Router()
 const adminRoute = require('../../admin/routes/web/admin.routes')
 const adminUserRoute = require('../../admin/routes/web/user.routes')
 const adminOrganizationRoute = require('../../admin/routes/web/organization.routes')
-
+const adminZoneRoute = require("../../admin/routes/web/zone.routes")
 const defaultRoutes = [
     {
       path:'/admin',
@@ -15,6 +15,10 @@ const defaultRoutes = [
     {
       path:'/admin/organization',
       route:adminOrganizationRoute
+    },
+    {
+      path:"/admin/zone",
+      route:adminZoneRoute
     }
   ];
 

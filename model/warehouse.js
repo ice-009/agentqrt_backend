@@ -1,12 +1,13 @@
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const organizationSchema = mongoose.Schema({
-  orgId: {
+const warehouseSchema = mongoose.Schema({
+  warehouseId: {
     type:Number,
     unique: true,
   },
-  orgname: {
+  warehousename: {
     type: String
   },
   email: {
@@ -41,9 +42,6 @@ const organizationSchema = mongoose.Schema({
   gstno:{
     type:String
   },
-  website:{
-    type:String
-  },
   country:{
     type:String,
     default:"India"
@@ -52,50 +50,46 @@ const organizationSchema = mongoose.Schema({
     type:Number,
     required:true
   },
-  yor:{
-    type:Number
-  },
   state:{
     type:String
   },
   contactperson:{
     type:String
   },
-  listzone:[{
-     type:Number
-  }]
+  parentzoneid:{
+    type:Number
+  }
 
 }); 
 
-organizationSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
-  return !!user;
-};
+// warehouseSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+//   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+//   return !!user;
+// }
 
 
-organizationSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
+warehouseSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
   const user = await this.findOne({ username, _id: { $ne: excludeUserId } });
   return !!user;
 };
 
-organizationSchema.methods.isPasswordMatch = async function (password) {
+warehouseSchema.methods.isPasswordMatch = async function (password) {
   const user = this;
   return bcrypt.compare(password, user.password);
 };
 
-organizationSchema.pre('save', async function (next) {
+warehouseSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
   }
   next();
-});
+})
  
-const OrganizationModel = mongoose.model('Organization', organizationSchema);
-
+const WarehouseModel = mongoose.model('Warehouse', warehouseSchema);
 
 
 
 module.exports = {
-  OrganizationModel,
+  WarehouseModel,
 };

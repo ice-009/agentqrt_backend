@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="../../../../css/home.admin.css">
+    <link rel="stylesheet" href="../../../../css/admin/crorg_c.css">
+
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <ul class="accordiann">
+
+                    <li>
+                        <input type="radio" name="accordian" id="first" checked="true">
+                        <label for="first">Dashboard</label>
+                        <div class="content">
+                            <div class="contentlist"><a href="../user">Users</a></div>
+                            <div class="contentlist"><a href="../organization">Organizations</a></div>
+                            <div class="contentlist"><a href="">Unapproved Outlets</a></div>
+                            <div class="contentlist"><a href="">Outlet density Map</a></div>
+                            <div class="contentlist"><a href="">Update User Targets</a></div>
+                            <div class="contentlist"><a href="">Set Outlet Targets</a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="second">
+                        <label for="second">Insight(beta)</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="third">
+                        <label for="third">Inventory</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="four">
+                        <label for="four">Products</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="five">
+                        <label for="five">Reports</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="six">
+                        <label for="six">Custom Reports</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="seven">
+                        <label for="seven">Discounts</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="eight">
+                        <label for="eight">Send Notifications</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="nine">
+                        <label for="nine">List Payments</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordian" id="ten">
+                        <label for="ten">MDM</label>
+                        <div class="content">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa sed unde porro temporibus
+                                minus sit,
+                                suscipit iste quia a dicta illum nemo esse eveniet possimus facilis veniam placeat,
+                                perferendis cumque.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9">
+                <div class="noclass mt-4 pt-2">
+                    <a class="collapsiblel btn btn-outline-primary mb-3">{{zone.name}}</a>
+                    <a class="btn btn-outline-primary">Add Warehouse</a>
+                    <a class="btn btn-outline-secondary">Add Distributor</a>
+                    <a class="btn btn-outline-success">Edit Zone</a>
+                    <a class="btn btn-outline-info">Download Outlet</a>
+                    <div class="mt-2"></div>
+                    {{#each listzone}}    
+                       <a class="collapsiblelw btn btn-outline-primary mt-3">{{this.name}}</a>
+                     {{/each}}
+                    {{#each listdistributor}}
+                        <a class="collapsiblelw btn btn-outline-primary mt-3">{{this.name}}</a>
+                     
+                    {{/each}}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

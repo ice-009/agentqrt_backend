@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const zoneSchema = mongoose.Schema({
+  zoneId:{
+    type:Number
+  },
   name: {
     type: String
   },
@@ -13,7 +16,7 @@ const zoneSchema = mongoose.Schema({
     type:String,
     trim:true,
   }],
-  parentorg:{
+  parentId:{
     type:String,
     required:true
   },
@@ -21,15 +24,15 @@ const zoneSchema = mongoose.Schema({
     type:String,
     trim:true
   }]
-  
+
 });
 
 
 
 
 
-const Zone = mongoose.model('Zone', zoneSchema);
+const ZoneModel = mongoose.model('Zone', zoneSchema);
 
 module.exports = {
-    Zone,
+    ZoneModel,
 }

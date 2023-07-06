@@ -2,9 +2,10 @@ const { AdminModel } = require("../../model");
 const catchAsync = require("../../utils/catchAsync");
 const { nullChecker } = require('../../helper/nullChecker');
 const bcrypt = require('bcryptjs');
-const sendToken = require('../../utils/sendtoken');
+// const sendToken = require('../../utils/sendtoken');
 const ApiError = require('../../utils/ApiError')
 const httpStatus = require("http-status");
+const sendTokenWeb = require("../../utils/sendtoken");
 
 const login = catchAsync(async (req,res)=>{
     res.render('admin/login.hbs')
@@ -23,7 +24,7 @@ const loginpost =  catchAsync(async (req,res)=>{
         res.status(401).json({success:false,message:"Invalid email and password"})
      }else{
         const adminLogged = await AdminModel.Admin.findOne({username:req.body.username})
-        sendToken(admin,200,res)
+        sendTokenWeb(admin,200,res)
      }
 })
 

@@ -35,7 +35,7 @@ const employeeSchema = mongoose.Schema({
     lowercase: true
   },
   dateOfBirth: {
-    type: Date,
+    type: Date, 
     trim: true
   },
   gender: {

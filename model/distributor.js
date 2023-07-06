@@ -1,12 +1,13 @@
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const organizationSchema = mongoose.Schema({
-  orgId: {
+const distributorSchema = mongoose.Schema({
+  distributorId: {
     type:Number,
     unique: true,
   },
-  orgname: {
+  distributorname: {
     type: String
   },
   email: {
@@ -41,9 +42,6 @@ const organizationSchema = mongoose.Schema({
   gstno:{
     type:String
   },
-  website:{
-    type:String
-  },
   country:{
     type:String,
     default:"India"
@@ -52,38 +50,35 @@ const organizationSchema = mongoose.Schema({
     type:Number,
     required:true
   },
-  yor:{
-    type:Number
-  },
   state:{
     type:String
   },
   contactperson:{
     type:String
   },
-  listzone:[{
-     type:Number
-  }]
+  parentzoneid:{
+    type:Number
+  }
 
 }); 
 
-organizationSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
-  return !!user;
-};
+// distributorSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+//   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+//   return !!user;
+// }
 
 
-organizationSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
+distributorSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
   const user = await this.findOne({ username, _id: { $ne: excludeUserId } });
   return !!user;
 };
 
-organizationSchema.methods.isPasswordMatch = async function (password) {
+distributorSchema.methods.isPasswordMatch = async function (password) {
   const user = this;
   return bcrypt.compare(password, user.password);
 };
 
-organizationSchema.pre('save', async function (next) {
+distributorSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
@@ -91,11 +86,11 @@ organizationSchema.pre('save', async function (next) {
   next();
 });
  
-const OrganizationModel = mongoose.model('Organization', organizationSchema);
+const DistributorModel = mongoose.model('Distributor', distributorSchema);
 
 
 
 
 module.exports = {
-  OrganizationModel,
+  DistributorModel,
 };

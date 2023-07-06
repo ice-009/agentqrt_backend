@@ -24,10 +24,31 @@ const createOrganizationPost = catchAsync(async(req,res)=>{
 
 })
 
+const getOrgbyId = catchAsync(async(req,res)=>{
+    const org =  await adminOrganizationService.getByOrgId(req.params.id)
+    const listzone = await adminOrganizationService.getAllZoneIdAndName(req.params.id)
+    res.render('admin/organization/org',{org:org,listzone:listzone})
+
+})
+
+
+const createZone = catchAsync(async(req,res)=>{
+    const org = await adminOrganizationService.getByOrgIdname(req.params.id)
+    res.render("admin/organization/crzone.hbs",{org:org})
+})
+
+
+const createZonePost = catchAsync(async(req,res)=>{
+    const zone  = await adminOrganizationService.createZone(req.body)
+    res.redirect("/admin/organization/"+req.body.orgId)
+})
 
 
 module.exports = {
     home,
     createOrganization,
-    createOrganizationPost
+    createOrganizationPost,
+    getOrgbyId,
+    createZone,
+    createZonePost
 }
