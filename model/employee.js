@@ -395,10 +395,10 @@ employeeSchema.pre('save', async function (next) {
     next();
 });
 
-const Employee = mongoose.model('Employee', employeeSchema);
+const EmployeeModel = mongoose.model('Employee', employeeSchema);
 
 
 
 module.exports = {
-    Employee,
+    EmployeeModel,
 };

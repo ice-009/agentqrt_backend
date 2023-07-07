@@ -33,7 +33,7 @@ const createEmployeeGet = catchAsync(async (req, res) => {
 const createEmployeePost = catchAsync(async (req, res) => {
     
     await adminuserService.createEmployee(req.body)
-
+    res.redirect("/admin/user")
 
 })
 
