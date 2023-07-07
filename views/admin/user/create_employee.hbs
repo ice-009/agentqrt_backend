@@ -11,30 +11,81 @@
 <body>
   <div class="container">
     <div class="content">
-      <form action="./admin" method="post">
+      <form action="/admin/user/create/employee" method="post">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Full Name</span>
-            <input name="fullname" type="text" placeholder="Enter your name" required="true">
+            <input name="fullname" type="text" placeholder="Enter name" required="true">
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input name="username" type="text" placeholder="Enter your username" required="true">
+            <input name="username" type="text" placeholder="Enter username" required="true">
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input name="email" type="text" placeholder="Enter your email" required="true">
+            <input name="email" type="text" placeholder="Enter email" required="true">
           </div>
-
+          <div class="input-box">
+            <span class="details">Residential Address</span>
+            <input name="resaddress" type="text" placeholder="Enter Residential Address" required="true">
+          </div>
+          <div class="input-box">
+            <span class="details">Current Address</span>
+            <input name="curraddress" type="text" placeholder="Enter Current Address" required="true">
+          </div>
+          <div class="input-box">
+            <span class="details">Aaadhar</span>
+            <input name="aaadhar" type="text" placeholder="Enter Aaadhar" required="true">
+          </div>
+          <div class="input-box">
+            <span class="details">PAN</span>
+            <input name="pan" type="text" placeholder="Enter PAN" required="true">
+          </div>
+          <div class="input-box">
+            <span class="details">Account No</span>
+            <input name="accountno" type="text" placeholder="Enter Account No" required="true">
+          </div>
+          <div class="input-box">
+            <span class="details">Name in bank</span>
+            <input name="nameinbank" type="text" placeholder="Enter Name in bank" required="true">
+          </div>
+          <div class="input-box">
+            <span class="details">IFSC</span>
+            <input name="ifsc" type="text" placeholder="Enter IFSC" required="true">
+          </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input name="password" type="text" placeholder="Enter your password" required="true">
+            <input name="password" type="text" placeholder="Enter password" required="true">
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input name="cpassword" type="text" placeholder="Confirm your password" required="true">
+            <input name="cpassword" type="text" placeholder="Confirm password" required="true">
           </div>
+          <div class="input-box">
+            <span class="details">Role</span>
+            <input list="role"  name="role" type="text" placeholder="Role" required="true">
+             <datalist id="role">
+             <option value="National Manager">
+            <option value="Zonal Manager">
+            <option value="Regional Manager">
+            <option value="area sales manager">
+            <option value="Sales Officer">
+            <option value="Salesman"></option>
+            </datalist>
+          </div>
+
         </div>
+        {{!-- <div style="margin-bottom: 10px;">
+          <input list="role" name="role" placeholder="enter role">
+          <datalist id="role"> --}}
+            {{!-- <option value="National Manager">
+            <option value="Zonal Manager">
+            <option value="Regional Manager">
+            <option value="area sales manager">
+            <option value="Sales Officer">
+            <option value="Salesman"></option> --}}
+          {{!-- </datalist>
+        </div> --}}
         <div class="radiodiv-details">
           <input type="radio" name="sale" id="dot-1">
           <input type="radio" name="collections" id="dot-2">
@@ -474,6 +525,8 @@
             </div>
           </div>
 
+
+
         </div>
         <div class="button">
           <input type="submit" value="Register">
@@ -481,7 +534,7 @@
       </form>
     </div>
   </div>
-
+  {{!--
   <div class="dropdown">
     <div class="select">
       <div class="caret">
@@ -510,7 +563,7 @@
       <li>Linkedin</li>
       <li>Tik tok</li>
     </ul>
-  </div>
+  </div> --}}
 
 
   <script>

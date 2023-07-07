@@ -19,9 +19,10 @@ const homeZone = catchAsync(async(req,res)=>{
     const zone =await adminZoneService.getByZoneIdname(req.params.id)
     console.log('a')
     const listdistributor = await adminDistWareService.getAllDistributorIdAndName(req.params.id)
-    console.log(listdistributor)
-    // listdistributor
-    res.render("admin/zone/zoneopen",{zone:zone,listdistributor:listdistributor})
+    const listwarehouse = await adminDistWareService.getAllWarehouseIdAndName(req.params.id)
+    console.log(listwarehouse)
+
+    res.render("admin/zone/zoneopen",{zone:zone,listdistributor:listdistributor,listwarehouse:listwarehouse})
 })
 
 module.exports = {

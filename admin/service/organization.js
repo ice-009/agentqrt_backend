@@ -153,7 +153,6 @@ const getAllZoneIdAndName = async(id)=>{
         const zone = await Zone.ZoneModel.findOne({zoneId:element})
         listZone.push(zone)
     }
-    console.log(listZone)
     return listZone
 }
 

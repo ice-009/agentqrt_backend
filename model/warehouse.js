@@ -58,7 +58,7 @@ const warehouseSchema = mongoose.Schema({
   },
   parentzoneid:{
     type:Number
-  }
+  },
 
 }); 
 
@@ -84,9 +84,10 @@ warehouseSchema.pre('save', async function (next) {
     user.password = await bcrypt.hash(user.password, 8);
   }
   next();
-})
+});
  
 const WarehouseModel = mongoose.model('Warehouse', warehouseSchema);
+
 
 
 

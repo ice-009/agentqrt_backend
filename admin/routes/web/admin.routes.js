@@ -26,13 +26,6 @@ router.post(
   '/create/admin',
   AdminUserController.createAdminPost
 )
-router.get(
-  '/create/employee',
-  AdminUserController.createEmployeeGet
-)
-router.post(
-  '/create/employee',
-  AdminUserController.createEmployeePost
-)
+
 
 module.exports = router;
