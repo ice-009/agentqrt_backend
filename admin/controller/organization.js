@@ -22,6 +22,8 @@ const createOrganizationPost = catchAsync(async(req,res)=>{
 
     await adminOrganizationService.createOrg(req.body)
 
+    res.redirect('/admin/organization/')
+
 })
 
 const getOrgbyId = catchAsync(async(req,res)=>{

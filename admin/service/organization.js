@@ -1,10 +1,11 @@
 const httpStatus = require("http-status");
 const { nullChecker } = require('../../helper/nullChecker');
 const ApiError = require('../../utils/ApiError');
-const { Organization,Ozone, Zone } = require("../../model/");
+const { Organization, Zone } = require("../../model/");
 
 
 const createOrg = async (body) => {
+    
     if (nullChecker(body.orgname))
         throw new ApiError(httpStatus.BAD_REQUEST, 'organization name required')
     if (nullChecker(body.email))
