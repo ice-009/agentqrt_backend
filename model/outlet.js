@@ -52,7 +52,11 @@ const outletSchema = mongoose.Schema({
     type:String,
     trim:true
   },
-  erpId:{
+  // erpId:{
+  //   type:Number,
+  //   required:true
+  // },
+  outletId:{
     type:Number,
     required:true
   },
@@ -89,20 +93,20 @@ const outletSchema = mongoose.Schema({
     trim:true
   },
   gstno:{
-    type:Number,
+    type:String,
     trim:true,
     required:true
   },
   dinNo:[{
-    type:Number,
+    type:String,
     trim:true
   }],
   foodlicenceno:{
-    type:Number,
+    type:String,
     trim:true
   },
   cinno:{
-    type:Number,
+    type:String,
     trim:true
   },
   longitude:{
@@ -113,6 +117,9 @@ const outletSchema = mongoose.Schema({
     type:Number,
     trim:true
   },
+  url:{
+    type:String
+  }
 
   
 });

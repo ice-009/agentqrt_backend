@@ -10,13 +10,14 @@ const OutletModel = require("../model/outlet");
 
 
 const createOutlet = async (outletBody) => {
+
     if (nullChecker(outletBody.name) ||valueChecker(outletBody.name,Joi.string()))
       throw new ApiError(httpStatus.BAD_REQUEST, ' name_required');
     if (nullChecker(outletBody.email) || !validator.validate(outletBody.email))
       throw new ApiError(httpStatus.BAD_REQUEST, ' email_required');
     if (nullChecker(outletBody.password))
       throw new ApiError(httpStatus.BAD_REQUEST, ' password_required');
-    if (await OutletModel.Outlet.isUsernameTaken(outletBody.username))
+    if (await OutletModel.Outlet.isEmailTaken(outletBody.email))
       throw new ApiError(httpStatus.BAD_REQUEST, 'email_already_taken');
     if(nullChecker(outletBody.phoneno))
        throw new ApiError(httpStatus.BAD_REQUEST,' phone no required')
@@ -35,8 +36,18 @@ const createOutlet = async (outletBody) => {
     if(nullChecker(outletBody.gstno))
         throw new ApiError(httpStatus.BAD_REQUEST,' gstno required')
 
-    const erpBody = await OutletModel.Outlet.find().sort({"erpId":-1}).limit(1);
-    const erpId = erpBody[0].erpId+1;
+    const idBody = await OutletModel.Outlet.find().sort({"outletId":-1}).limit(1);
+
+    var id;
+    if(idBody.length==0){
+        console.log('a')
+        id = 1;
+        console.log(id)
+    }else{
+      console.log('aa')
+        id = idBody[0].outletId+1
+    }
+
    
 
     return OutletModel.Outlet.create( {
@@ -50,7 +61,7 @@ const createOutlet = async (outletBody) => {
        "outletstate":outletBody.outletstate,
        "state":outletBody.state,
        "city":outletBody.city,
-       "address":outletBody.address,
+       "address":outletBody.address, 
        "outletlevel":outletBody.outletlevel,
        "area":outletBody.area,
        "outlettype":outletBody.outlettype,
@@ -62,8 +73,9 @@ const createOutlet = async (outletBody) => {
        "cinno":outletBody.cinno,
        "longitude":outletBody.longitude,
        "latitude":outletBody.latitude,
-       "erpId":erpId,
-       "beat":outletBody.beat
+       "outletId":id,
+       "beat":outletBody.beat,
+       "url":outletBody.imgurl
       })
 }
 
@@ -129,7 +141,8 @@ const editOutlet = async (erpId,outletBody) =>{
         "cinno":outletBody.cinno,
         "longitude":outletBody.longitude,
         "latitude":outletBody.latitude,
-        "beat":outletBody.beat
+        "beat":outletBody.beat,
+        "url":outletBody.url
       }
     )
     console.log(erpId)

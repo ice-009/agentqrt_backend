@@ -51,4 +51,19 @@ router.use(route.path, route.route);
 });
 
 module.exports = router;
+
+
+// "@emotion/react": "^11.11.1",
+//     "@emotion/styled": "^11.11.0",
+//     "@mui/icons-material": "^5.14.1",
+//     "@mui/material": "^5.14.1",
+//     "@mui/x-data-grid": "^6.10.0",
+//     "@nivo/bar": "^0.83.0",
+//     "@nivo/core": "^0.83.0",
+//     "@nivo/geo": "^0.83.0",
+//     "@nivo/pie": "^0.83.0",
+//     "@reduxjs/toolkit": "^1.9.5",
+//     "react-datepicker": "^4.16.0",
+//     "react-redux": "^8.1.1",
+//     "react-router-dom": "^6.14.2"
   

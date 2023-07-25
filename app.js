@@ -29,7 +29,7 @@ const partialPath = path.join(__dirname,"./partials")
 
 // app.set('view engine', 'html');
 app.set('view engine', 'hbs');
-//custom view path
+//custom view path 
 // app.set("views",templatePath)
 //partial path
 
@@ -44,6 +44,10 @@ app.use('/',webRoute)
 app.use(express.static(path.join('public')));
 
 
+app.post('/test',(req,res)=>{
+  console.log(req.body)
+})
+
 dotenv.config({path:".env"});
 
 const port = process.env.PORT || 8000;
@@ -52,3 +56,4 @@ app.listen(port, () => {
   connectDatabase();
 }); 
 
+ 

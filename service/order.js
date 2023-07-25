@@ -12,6 +12,7 @@ const Order = require('../model/order')
 
 const createOrder = async(employee,orderBody)=>{
      console.log(orderBody)
+
      if (nullChecker(orderBody.quantityprice))
       throw new ApiError(httpStatus.BAD_REQUEST, 'quantity price required');
     if (nullChecker(orderBody.pieceprice))

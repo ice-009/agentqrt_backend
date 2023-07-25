@@ -2,6 +2,7 @@ const router = require('express').Router()
 const outletRoute = require('./outlet.routes')
 const orderRoute = require('./order.routes')
 const employeeRoute = require('./employee.routes')
+const reportRoute = require('../../admin/routes/api/report.routes')
 
 const defaultRoutes = [
     {
@@ -12,13 +13,14 @@ const defaultRoutes = [
       path:'/order',
       route:orderRoute
     },
-    // {
-    //   path:'/admin',
-    //   route:adminRoute
-    // },
     {
       path:'/employee',
       route:employeeRoute
+    },
+    //Actual part start here for api route
+    {
+      path:'/report',
+      route:reportRoute
     }
 
   ];
