@@ -42,14 +42,16 @@ mongoose.set('strictQuery', true)
 app.use('/api/v1',webRoute)
 app.use(express.static(path.join('public')));
 
-
+app.get('/', (req,res)=>{
+  res.json('hello');
+})
 app.post('/test',(req,res)=>{
   console.log(req.body)
 })
 
 dotenv.config({path:".env"});
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Server is up at port ${port}`);
   connectDatabase();

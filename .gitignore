@@ -1,2 +1,4 @@
 node_modules
 public/boot/
+.env
+package-lock.json
