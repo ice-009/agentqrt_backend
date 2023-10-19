@@ -7,25 +7,11 @@ const router = express.Router();
 
 router.post(
   '/create',
+  authToken,
   orderController.createOrder
 )
 
 
-// router.post(
-//   '/login',
-//   outletController.loginOutlet
-// )
-// router.post(
-//   '/resetpassword',
-//   authToken,
-//   outletController.resetPassword
-// );
-
-// router.post(
-//   '/password/rest',
-//   authToken,
-//   authController.resetPassword
-// )
 
 
 

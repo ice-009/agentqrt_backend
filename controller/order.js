@@ -6,7 +6,7 @@ const sendToken = require('../utils/sendtoken');
 const createOrder = catchAsync(async (req,res)=>{
     try {
         
-        const employee = "xyz"
+        const employee =req.user.id
         const order = await orderService.createOrder(employee,req.body)
         res.status(201).json({
             success:true,

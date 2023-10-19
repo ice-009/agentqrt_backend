@@ -77,7 +77,7 @@ const createOutlet = async (outletBody) => {
        "beat":outletBody.beat,
        "url":outletBody.imgurl
       })
-}
+} 
 
 const loginOutlet = async (outletBody,res) =>{
     if (nullChecker(outletBody.username))

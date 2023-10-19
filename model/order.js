@@ -4,40 +4,42 @@ const bcrypt = require('bcryptjs');
 const orderSchema = mongoose.Schema({
 
   orderId: {
-    type:Number,
+    type: Number,
     unique: true,
     trim: true,
   },
-  userId:{
-     type:String,
-     trim: true,
-     lowercase: true
+  userId: {
+    type: String,
+    trim: true,
+    lowercase: true
   },
-  reason:[{
-    type:String
+  productId: [{
+    type: Number
   }],
-  quantityprice:{
-    type:Number,
-    required:true
+  companyId: {
+    type: String
   },
-  pieceprice:{
-    type:Number,
-    required:true
-  },
-  amount:{
-    type:Number,
-    required:true
-  },
+  reason: [{
+    type: String
+  }],
+  quantity: [{
+    type: Number,
+  }],
+  pieceprice: [{
+    type: Number,
+  }],
+  amount: [{
+    type: Number,
+  }],
   date: {
     type: Date,
     default: Date.now(),
   },
-  outletid:{
-    type:String,
-    required:true
+  outletId: {
+    type: String,
+    required: true
   }
-
-}); 
+});
 
 
 

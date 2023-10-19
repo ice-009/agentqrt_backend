@@ -33,14 +33,13 @@ app.set('view engine', 'hbs');
 // app.set("views",templatePath)
 //partial path
 
-
 hbs.registerPartials(partialPath)
 
 app.use(express.json())
 app.set('trust proxy', true)
 mongoose.set('strictQuery', true)
-app.use('/api/v1',apiRoutes);
-app.use('/',webRoute)
+// app.use('/api/v1',apiRoutes)
+app.use('/api/v1',webRoute)
 app.use(express.static(path.join('public')));
 
 
