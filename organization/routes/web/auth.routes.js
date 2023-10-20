@@ -19,6 +19,10 @@ router.get(
     '/login',
     authController.loginGet
 )
+router.post(
+  '/register',
+  authController.registerPost
+)
 
 
 

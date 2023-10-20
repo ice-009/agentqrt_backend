@@ -5,12 +5,6 @@ const { employeeController } = require('../../controller');
 const { authToken } = require('../../middleware/auth');
 const router = express.Router();
 
-
-
-
-
-
-
 // router.post(
 //   '/create',
 //   //validator(authValidation.register),
@@ -61,7 +55,7 @@ router.post(
 
 // // router.post(
 // //   '/reset-password',
-// //   validator(authValidation.resetPassword),
+// //   validator(authValidation.resetPassword),abkmupeastabkmupeast
 // //   authController.resetPassword
 // // );
 
