@@ -6,7 +6,9 @@ const authService = require('../service/auth')
 const loginGet = catchAsync(async(req,res)=>{
     res.render("organization/login")
 }) 
-
+const registerGet =  catchAsync(async(req,res)=>{
+    res.render("organization/register")
+})
 const registerPost = catchAsync(async (req, res) => {
   try {
     
@@ -75,6 +77,8 @@ const loginPost = catchAsync(async(req,res)=>{
 }) 
 
 
+
+
 const home = catchAsync(async(req,res)=>{
     // res.render("organization/")
     res.json({message:"Organization Home Page"})
@@ -85,5 +89,6 @@ module.exports = {
     loginGet,
     home,
     loginPost,
+    registerGet,
     registerPost
 }
