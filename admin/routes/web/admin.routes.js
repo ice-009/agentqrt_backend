@@ -18,6 +18,10 @@ router.post(
   '/login',
   adminauthController.loginpost
 )
+router.post(
+  '/logout',
+  adminauthController.logout
+)
 router.get(
   '/create/admin',
   AdminUserController.createAdminGet

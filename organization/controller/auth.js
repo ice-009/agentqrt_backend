@@ -6,7 +6,7 @@ const loginGet = catchAsync(async(req,res)=>{
 }) 
 
 const loginPost = catchAsync(async(req,res)=>{
-    const user =await authService.login(req.body,res)
+    const user = await authService.login(req.body,res)
     
 }) 
 

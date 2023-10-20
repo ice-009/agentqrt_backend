@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const ApiError = require('../../utils/ApiError')
 const httpStatus = require("http-status");
 const sendTokenWeb = require("../../utils/sendtoken");
+const blacklistedTokens = new Set();
 
 const login = catchAsync(async (req,res)=>{
     res.render('admin/login.hbs')
@@ -26,13 +27,28 @@ const loginpost =  catchAsync(async (req,res)=>{
         const adminLogged = await AdminModel.Admin.findOne({username:req.body.username})
         sendTokenWeb(admin,200,res)
      }
+     if (blacklistedTokens.has(req.body.token)) {
+      res.status(401).json({ success: false, message: 'Token is blacklisted. Please log in again.' });
+    } else {
+      sendTokenWeb(admin, 200, res);
+    }
 })
-
+const logout = catchAsync(async (req, res) => {
+   const token = req.body.token; // Assuming you pass the token to invalidate in the request body
+   if (token) {
+     blacklistedTokens.add(token);
+     res.status(200).json({ success: true, message: 'Logged out successfully' });
+   } else {
+     res.status(400).json({ success: false, message: 'Token not provided' });
+   }
+ });
+ 
 
 
 module.exports = {
     login,
-    loginpost
+    loginpost,
+    logout
 }
 
 
