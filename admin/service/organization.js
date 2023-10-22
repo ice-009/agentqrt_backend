@@ -148,7 +148,7 @@ const getAllZoneIdAndName = async(id)=>{
     const organization = await Organization.OrganizationModel.findOne({ orgId: id })
     console.log(organization.listzone)
     const listZone = [];
-    for (let index = 0; index <organization.listzone.length; index++) {
+    for (let index = 0; index < organization.listzone.length; index++) {
         console.log(organization.listzone[index])
         const element = organization.listzone[index];
         const zone = await Zone.ZoneModel.findOne({zoneId:element})

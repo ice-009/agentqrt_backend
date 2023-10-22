@@ -17,7 +17,7 @@ const defaultRoutes = [
       path:'/employee',
       route:employeeRoute
     },
-    //Actual part start here for api route
+
     {
       path:'/report',
       route:reportRoute
