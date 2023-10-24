@@ -22,6 +22,7 @@ const adminToken = (req,res,next) =>{
   // if(cookie){
     console.log(cookie.token)
     try {
+      console.log(cookie.token)
       const decoded = jwt.verify(cookie.token, process.env.JWT_SECRET);
       req.user = decoded;
     } catch (err) {

@@ -2,7 +2,7 @@ const httpStatus = require("http-status");
 const { nullChecker } = require('../../helper/nullChecker');
 const ApiError = require('../../utils/ApiError');
 const { Distributor , Zone ,Warehouse} = require("../../model/");
-
+const ZoneModel =  require("../../model/zone")
 async function createZone(req, res) {
     try {
       const { name, pincode, district, parentId, distributor, warehouse } = req.body;
@@ -25,8 +25,8 @@ async function createZone(req, res) {
   }
 
 
-const createDistributor = async(zoneid,body)=>{
-
+const createDistributor = async(zoneId,body)=>{
+    // zoneId = req.params.zoneId
     // if (nullChecker(body.name))
     //     throw new ApiError(httpStatus.BAD_REQUEST, 'Distributor name required')
     if (nullChecker(body.email))
@@ -35,8 +35,8 @@ const createDistributor = async(zoneid,body)=>{
         throw new ApiError(httpStatus.BAD_REQUEST, 'password required')
     if (nullChecker(body.username))
         throw new ApiError(httpStatus.BAD_REQUEST, 'username required')
-    if (await Distributor.DistributorModel.isUsernameTaken(body.username))
-        throw new ApiError(httpStatus.BAD_REQUEST, 'username_already_taken')
+    // if (await Distributor.DistributorModel.isUsernameTaken(body.username))
+    //     throw new ApiError(httpStatus.BAD_REQUEST, 'username_already_taken')
     if (body.password != body.cpassword)
         throw new ApiError(httpStatus.BAD_REQUEST, 'password and confirm password should same')
     if (nullChecker(body.contactnumber))
@@ -53,7 +53,18 @@ const createDistributor = async(zoneid,body)=>{
         throw new ApiError(httpStatus.BAD_REQUEST, 'state required')
 
     
-    const element = await Zone.ZoneModel.findOne({ zoneId:zoneid })
+        // try {
+            const element = await ZoneModel.findOne({ zoneId: zoneId });
+            // if (!element) {
+            //   throw new ApiError(httpStatus.NOT_FOUND, 'Zone not found');
+            // }
+            // Rest of the code
+        //   } catch (error) {
+        //     console.error('Error in createDistributor:', error);
+        //     throw error; // Re-throw the error to propagate it up the call stack
+        //   }
+          
+        
     const listdistributor =element.distributor
 
 
@@ -85,7 +96,7 @@ const createDistributor = async(zoneid,body)=>{
     listdistributor.push(distributor.distributorId)
     console.log(listdistributor)
 
-    await Zone.ZoneModel.findOneAndUpdate({ zoneId:zoneid },{distributor:listdistributor})
+    await ZoneModel.findOneAndUpdate({ zoneId:zoneId },{distributor:listdistributor})
 }
 
 

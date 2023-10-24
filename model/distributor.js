@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const distributorSchema = mongoose.Schema({
   distributorId: {
-    type:Number,
+    type:String,
     unique: true,
   },
   distributorname: {
@@ -57,7 +57,7 @@ const distributorSchema = mongoose.Schema({
     type:String
   },
   parentzoneid:{
-    type:Number
+    type:String
   },
 
 }); 
