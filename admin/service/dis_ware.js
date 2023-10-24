@@ -3,12 +3,32 @@ const { nullChecker } = require('../../helper/nullChecker');
 const ApiError = require('../../utils/ApiError');
 const { Distributor , Zone ,Warehouse} = require("../../model/");
 
+async function createZone(req, res) {
+    try {
+      const { name, pincode, district, parentId, distributor, warehouse } = req.body;
+  
+      const newZone = new ZoneModel({
+        name,
+        pincode,
+        district,
+        parentId,
+        distributor,
+        warehouse,
+      });
+  
+      const savedZone = await newZone.save();
+  
+      res.status(201).json(savedZone);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
 
 
 const createDistributor = async(zoneid,body)=>{
 
-    if (nullChecker(body.name))
-        throw new ApiError(httpStatus.BAD_REQUEST, 'Distributor name required')
+    // if (nullChecker(body.name))
+    //     throw new ApiError(httpStatus.BAD_REQUEST, 'Distributor name required')
     if (nullChecker(body.email))
         throw new ApiError(httpStatus.BAD_REQUEST, 'email required')
     if (nullChecker(body.password))
@@ -166,5 +186,6 @@ module.exports = {
     createDistributor,
     getAllDistributorIdAndName,
     createWarehouse,
-    getAllWarehouseIdAndName
+    getAllWarehouseIdAndName,
+    createZone
 }

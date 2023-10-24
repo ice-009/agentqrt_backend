@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Zone</title>
+</head>
+<body>
+    <h1>Create a New Zone</h1>
+    <form action="/api/v1/admin/zone/create" method="POST">
+        {{!-- Cross-Site Request Forgery (CSRF) protection --}}
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <label for="id">Zone ID:</label>
+        <input type="text" name="id" id="id" required>
+
+        <label for="name">Zone Name:</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="pincode">Pincode (comma-separated):</label>
+        <input type="text" name="pincode" id="pincode" required>
+
+        <label for="district">Districts (comma-separated):</label>
+        <input type="text" name="district" id="district" required>
+
+        <label for="parentId">Parent Zone ID:</label>
+        <input type="text" name="parentId" id="parentId" required>
+
+        <label for="distributor">Distributors (comma-separated):</label>
+        <input type="text" name="distributor" id="distributor" required>
+
+        <label for="warehouse">Warehouses (comma-separated):</label>
+        <input type="text" name="warehouse" id="warehouse" required>
+
+        <button type="submit">Create Zone</button>
+    </form>
+</body>
+</html>
