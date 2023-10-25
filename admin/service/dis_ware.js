@@ -144,7 +144,7 @@ const createWarehouse = async(zoneid,body)=>{
         throw new ApiError(httpStatus.BAD_REQUEST, 'state required')
 
     
-    const element = await Zone.ZoneModel.findOne({ zoneId:zoneid })
+    const element = await ZoneModel.findOne({ zoneId:zoneid })
     const listwarehouse =element.warehouse
 
 
@@ -175,7 +175,7 @@ const createWarehouse = async(zoneid,body)=>{
     listwarehouse.push(warehouse.warehouseId)
     console.log(listwarehouse)
 
-    await Zone.ZoneModel.findOneAndUpdate({ zoneId:zoneid },{warehouse:listwarehouse})
+    await ZoneModel.findOneAndUpdate({ zoneId:zoneid },{warehouse:listwarehouse})
 }
 
 
