@@ -57,7 +57,7 @@ const warehouseSchema = mongoose.Schema({
     type:String
   },
   parentzoneid:{
-    type:Number
+    type:String
   },
 
 }); 

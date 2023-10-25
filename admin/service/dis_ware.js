@@ -173,7 +173,7 @@ const createWarehouse = async(zoneid,body)=>{
     })
 
     listwarehouse.push(warehouse.warehouseId)
-    console.log(listwarehouse)
+    // console.log(listwarehouse)
 
     await ZoneModel.findOneAndUpdate({ zoneId:zoneid },{warehouse:listwarehouse})
 }
