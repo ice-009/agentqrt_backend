@@ -20,12 +20,12 @@ const zoneSchema = new mongoose.Schema({
     required: true
   },
   distributor: [{
-    type: String,
-    trim: true
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Distributor'
   }],
   warehouse: [{
-    type: String,
-    trim: true
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Warehouse'
   }]
 });
 

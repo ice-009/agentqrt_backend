@@ -92,12 +92,19 @@ const createDistributor = async(zoneId,body)=>{
         parentzoneid:body.zoneId
     })
 
-    console.log(listdistributor)
-    listdistributor.push(distributor.distributorId)
-    console.log(listdistributor)
+    const zone = await ZoneModel.findOne({ zoneId: zoneId });
+    if (zone) {
+      zone.distributor.push(distributor._id);
+      await zone.save();
+    } else {
+      // Handle the case where the zone with the specified ID is not found
+      throw new ApiError(httpStatus.NOT_FOUND, 'Zone not found');
+    }
 
-    await ZoneModel.findOneAndUpdate({ zoneId:zoneId },{distributor:listdistributor})
-}
+    // Return the created distributor
+    return distributor;
+  }
+  
 
 
 const getAllDistributorIdAndName = async(id)=>{
@@ -144,7 +151,7 @@ const createWarehouse = async(zoneid,body)=>{
         throw new ApiError(httpStatus.BAD_REQUEST, 'state required')
 
     
-    const element = await ZoneModel.findOne({ zoneId:zoneid })
+    const element = await ZoneModel.findOne({ zoneId: zoneid })
     const listwarehouse =element.warehouse
 
 
@@ -172,11 +179,19 @@ const createWarehouse = async(zoneid,body)=>{
         parentzoneid:body.zoneId
     })
 
-    listwarehouse.push(warehouse.warehouseId)
-    // console.log(listwarehouse)
+    const zone = await ZoneModel.findOne({ zoneId: zoneid});
+    if (zone) {
+      zone.warehouse.push(warehouse._id);
+      await zone.save();
+    } else {
+      // Handle the case where the zone with the specified ID is not found
+      throw new ApiError(httpStatus.NOT_FOUND, 'Zone not found');
+    }
 
-    await ZoneModel.findOneAndUpdate({ zoneId:zoneid },{warehouse:listwarehouse})
-}
+    // Return the created warehouse
+    return warehouse;
+  }
+
 
 
 const getAllWarehouseIdAndName = async(id)=>{
