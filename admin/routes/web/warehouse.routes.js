@@ -1,8 +1,8 @@
 const express = require('express');
 const { adminToken } = require('../../../middleware/auth');
 const {AdminDistWareController } = require('../../controller');
-
-
+const WarehouseModel = require('../../../model/warehouse.js')
+const ZoneModel =  require('../../../model/zone')
 const router = express.Router();
 
 router.get(
@@ -16,5 +16,19 @@ router.post(
   adminToken,
   AdminDistWareController.createWarehousePost
 )
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const warehouses = await WarehouseModel.find({ parentzoneid: id });
+
+    res.status(200).json({ warehouses });
+  } catch (error) {
+    console.error('Error fetching warehouses:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 module.exports = router;

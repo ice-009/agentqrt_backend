@@ -3,6 +3,7 @@ const { nullChecker } = require('../../helper/nullChecker');
 const ApiError = require('../../utils/ApiError');
 const { Distributor , Zone ,Warehouse} = require("../../model/");
 const ZoneModel =  require("../../model/zone")
+const WarehouseModel = require("../../model/warehouse")
 async function createZone(req, res) {
     try {
       const { name, pincode, district, parentId, distributor, warehouse } = req.body;
@@ -155,7 +156,7 @@ const createWarehouse = async(zoneid,body)=>{
     const listwarehouse =element.warehouse
 
 
-    const warehouseId = await Warehouse.WarehouseModel.find().sort({ "warehouseId": -1 }).limit(1);
+        const warehouseId = await WarehouseModel.find().sort({ "warehouseId": -1 }).limit(1);
     var id;
     if (warehouseId.length == 0) {
         id = 1;
@@ -163,7 +164,7 @@ const createWarehouse = async(zoneid,body)=>{
         id = warehouseId[0].warehouseId + 1
     }
     console.log(id)
-    const warehouse =await Warehouse.WarehouseModel.create({
+    const warehouse =await WarehouseModel.create({
         warehouseId: id,
         warehousename: body.name,
         email: body.email,

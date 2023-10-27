@@ -91,6 +91,4 @@ const WarehouseModel = mongoose.model('Warehouse', warehouseSchema);
 
 
 
-module.exports = {
-  WarehouseModel,
-};
+module.exports = WarehouseModel;
