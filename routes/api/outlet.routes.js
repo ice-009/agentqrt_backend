@@ -7,6 +7,10 @@ const { authToken } = require('../../middleware/auth');
 
 const router = express.Router();
 
+router.get('/', (req, res)=>{
+  res.send('hello outlets')
+})
+
 router.post(
   '/register',
   outletController.createOutlet

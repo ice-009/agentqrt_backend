@@ -40,6 +40,7 @@ app.set('trust proxy', true)
 mongoose.set('strictQuery', true)
 // app.use('/api/v1',apiRoutes)
 app.use('/api/v1',webRoute)
+app.use('/api/api/v1',apiRoutes)
 app.use(express.static(path.join('public')));
 
 app.get('/', (req,res)=>{

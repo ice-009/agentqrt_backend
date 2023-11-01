@@ -8,6 +8,8 @@ const adminWarehouseRoute = require("../../admin/routes/web/warehouse.routes")
 const distributorRoute = require('../../distributor/routes/web/auth.routes')
 const organizationRoute = require("../../organization/routes/web/auth.routes")
 
+
+
 const defaultRoutes = [
     {
       path:'/admin',

@@ -30,5 +30,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try{
+    const warehouses = await WarehouseModel.find();
+    res.status(200).json({ warehouses });
+  }
+  catch(err){
+    res.status(500).json({ error: 'Internal server error' });
+    console.log(err)
+  }
+})
+
 
 module.exports = router;

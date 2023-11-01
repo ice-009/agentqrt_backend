@@ -31,6 +31,17 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try{
+    const distributors = await DistributorModel.find();
+    res.status(200).json({ distributors });
+  }
+  catch(err){
+    res.status(500).json({ error: 'Internal server error' });
+    console.log(err)
+  }
+})
+
 
 
 module.exports = router;

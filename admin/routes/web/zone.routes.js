@@ -17,6 +17,7 @@ router.get(
       res.status(500).json({ error: 'Failed to retrieve zones' });
     }
   });
+  
   router.get('/:id', async (req, res) => {
     try {
       const zoneId = req.params.id; 
@@ -28,7 +29,6 @@ router.get(
 
       res.json(zone);
     } catch (error) {
-      // Handle other errors
       console.error(error);
       res.status(500).json({ error: 'Server error' });
     }

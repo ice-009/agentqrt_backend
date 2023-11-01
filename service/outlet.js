@@ -24,7 +24,7 @@ const createOutlet = async (outletBody) => {
     if(nullChecker(outletBody.pincode))
        throw new ApiError(httpStatus.BAD_REQUEST,' pincode required')
     if(nullChecker(outletBody.district))
-       throw new ApiError(httpStatus.BAD_REQUEST,' distric required')
+       throw new ApiError(httpStatus.BAD_REQUEST,' district required')
     if(nullChecker(outletBody.state))
         throw new ApiError(httpStatus.BAD_REQUEST,' state required')
     if(nullChecker(outletBody.address))

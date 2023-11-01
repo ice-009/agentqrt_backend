@@ -185,11 +185,10 @@ const createWarehouse = async(zoneid,body)=>{
       zone.warehouse.push(warehouse._id);
       await zone.save();
     } else {
-      // Handle the case where the zone with the specified ID is not found
+    
       throw new ApiError(httpStatus.NOT_FOUND, 'Zone not found');
     }
 
-    // Return the created warehouse
     return warehouse;
   }
 
