@@ -6,6 +6,7 @@ const distributorSchema = mongoose.Schema({
   distributorId: {
     type:String,
     unique: true,
+    required: true
   },
   distributorname: {
     type: String
@@ -59,6 +60,7 @@ const distributorSchema = mongoose.Schema({
   parentzoneid:{
     type:String
   },
+  
 
 }); 
 

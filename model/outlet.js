@@ -119,7 +119,11 @@ const outletSchema = mongoose.Schema({
   },
   url:{
     type:String
-  }
+  },
+  distributor: {
+    type : String
+  },
+
 
   
 });
@@ -262,6 +266,10 @@ const outletDelSchema = mongoose.Schema({
   latitude:{
     type:Number,
     trim:true
+  },
+  distributor: {
+    type: String,
+  
   },
 
   

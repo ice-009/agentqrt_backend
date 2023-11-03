@@ -75,7 +75,8 @@ const createOutlet = async (outletBody) => {
        "latitude":outletBody.latitude,
        "outletId":id,
        "beat":outletBody.beat,
-       "url":outletBody.imgurl
+       "url":outletBody.imgurl,
+       "distributor": outletBody.distributor
       })
 } 
 

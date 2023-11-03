@@ -17,7 +17,7 @@ const loginOutlet = catchAsync(async (req, res) => {
     try{  const outlet = await outletService.loginOutlet(req.body,res)
           sendToken(outlet,201,res)
     }catch(errr){
-          console.log(errr.status +errr.message )
+          console.log(errr.status +errr.message)
     }
 })
 
