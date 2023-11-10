@@ -4,7 +4,7 @@ const {AdminDistWareController } = require('../../controller');
 const {DistributorModel} = require('../../../model/distributor')
 
 const router = express.Router();
-
+// const id = DistributorModel
 
 router.get(
     '/create/:id',

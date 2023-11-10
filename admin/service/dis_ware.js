@@ -3,6 +3,7 @@ const { nullChecker } = require('../../helper/nullChecker');
 const ApiError = require('../../utils/ApiError');
 const { Distributor , Zone ,Warehouse} = require("../../model/");
 const ZoneModel =  require("../../model/zone")
+const mongoose = require('mongoose')
 const WarehouseModel = require("../../model/warehouse")
 async function createZone(req, res) {
     try {
@@ -26,7 +27,7 @@ async function createZone(req, res) {
   }
 
 
-const createDistributor = async(zoneId,body)=>{
+const createDistributor = async(body)=>{
     // zoneId = req.params.zoneId
     // if (nullChecker(body.name))
     //     throw new ApiError(httpStatus.BAD_REQUEST, 'Distributor name required')
@@ -55,7 +56,7 @@ const createDistributor = async(zoneId,body)=>{
 
     
         // try {
-            const element = await ZoneModel.findOne({ zoneId: zoneId });
+            // const element = await ZoneModel.findOne({ zoneId: zoneId });
             // if (!element) {
             //   throw new ApiError(httpStatus.NOT_FOUND, 'Zone not found');
             // }
@@ -69,7 +70,9 @@ const createDistributor = async(zoneId,body)=>{
     // const listdistributor =element.distributor
 
 
-    const distributorId = await Distributor.DistributorModel.find().sort({ "distributorId": -1 }).limit(1);
+    // const distributorId = await Distributor.DistributorModel.find().sort({ "distributorId": -1 }).limit(1);
+
+    
     var id;
     if (distributorId.length == 0) {
         id = 1;
@@ -77,34 +80,50 @@ const createDistributor = async(zoneId,body)=>{
         id = distributorId[0].distributorId + 1
     }
     console.log(id)
-    const distributor =await Distributor.DistributorModel.create({
+const {distributorId, distributorname, email, password, username, contactnumber, address, gstno, country, pincode, state, contactperson, parentzoneid} = req.body
+    const zoneId = mongoose.Types.ObjectId(parentzoneid)
+    const distributor = new Distributor.DistributorModel({
         distributorId: id,
-        distributorname: body.name,
-        email: body.email,
-        password: body.password,
-        username: body.username,
-        contactnumber: body.contactnumber,
-        address: body.address,
-        gstno: body.gstno,
-        country: body.country,
-        pincode: body.pincode,
-        state: body.state,
-        contactperson: body.contactperson,
-        parentzoneid:body.zoneId
+        distributorname,
+        email,
+        password,
+        username,
+        contactnumber,
+        address,
+        gstno,
+        country,
+        pincode,
+        state,
+        contactperson,
+        parentzoneid: zoneId
     })
 
-    const zone = await ZoneModel.findOne({ zoneId: zoneId });
-    if (zone) {
-      zone.distributor.push(distributor._id);
-      await zone.save();
-    } else {
-      // Handle the case where the zone with the specified ID is not found
-      throw new ApiError(httpStatus.NOT_FOUND, 'Zone not found');
-    }
+    const savedDistributor = await distributor.save();
+    // const distributor =await Distributor.DistributorModel.create({
+    //     distributorId: id,
+    //     distributorname: body.name,
+    //     email: body.email,
+    //     password: body.password,
+    //     username: body.username,
+    //     contactnumber: body.contactnumber,
+    //     address: body.address,
+    //     gstno: body.gstno,
+    //     country: body.country,
+    //     pincode: body.pincode,
+    //     state: body.state,
+    //     contactperson: body.contactperson,
+    //     parentzoneid:body.zoneId
+    // })
+
+    await ZoneModel.findByIdAndUpdate(
+        zoneId,
+        { $push: { distributor: savedDistributor._id } },
+        { new: true }
+    );
 
     // Return the created distributor
     return distributor;
-  }
+  } 
   
 
 

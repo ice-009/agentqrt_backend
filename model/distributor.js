@@ -57,10 +57,14 @@ const distributorSchema = mongoose.Schema({
   contactperson:{
     type:String
   },
-  parentzoneid: [{ 
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Distributor' 
-  }]
+  parentzoneid: { 
+    type: String,
+    required: true
+  },
+  outlets:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Outlet"
+  }],
   
   
 

@@ -21,16 +21,16 @@ router.get(
     }
   });
   
-  router.get('/:id', async (req, res) => {
-    const id = req.params.id;
-  
-    try {
-      const distributors = await DistributorModel.find({ parentzoneid: id});
-  
-      res.status(200).json({ distributors });
-    } catch (error) {
-      console.error('Error fetching warehouses:', error);
-      res.status(500).json({ error: 'Internal server error' });
+  router.get(
+    '/:id',
+    adminToken, async (req,res)=>{
+      const id = req.params.id;
+      const zonedata = await ZoneModel.findById(id).exec()
+      console.log(zonedata)
+      // console.log(id)
+      const data = await DistributorModel.find({parentzoneid:id}).exec()
+      console.log("here is data", data)  
+      res.render("admin/Distributor/distributor",{id, data})
     }
-  });
+    );
 module.exports = router;

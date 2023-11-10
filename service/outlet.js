@@ -7,7 +7,8 @@ const Joi = require('joi');
 const bcrypt = require('bcryptjs');
 const sendToken = require('../utils/sendtoken');
 const OutletModel = require("../model/outlet");
-
+const { DistributorModel } = require("../model/distributor");
+const mongoose = require('mongoose')
 
 const createOutlet = async (outletBody) => {
 
@@ -50,35 +51,45 @@ const createOutlet = async (outletBody) => {
 
    
 
-    return OutletModel.Outlet.create( {
-       "name":outletBody.name,
-       "email":outletBody.email,
-       "password":outletBody.password,
-       "username":outletBody.username,
-       "phoneno":outletBody.phoneno,
-       "pincode":outletBody.pincode,
-       "district":outletBody.district,
-       "outletstate":outletBody.outletstate,
-       "state":outletBody.state,
-       "city":outletBody.city,
-       "address":outletBody.address, 
-       "outletlevel":outletBody.outletlevel,
-       "area":outletBody.area,
-       "outlettype":outletBody.outlettype,
-       "ownername":outletBody.ownername,
-       "owneraadhar":outletBody.owneraadhar,
-       "gstno":outletBody.gstno,
-       "dinNo":outletBody.dinNo,
-       "foodlicenceno":outletBody.foodlicenceno,
-       "cinno":outletBody.cinno,
-       "longitude":outletBody.longitude,
-       "latitude":outletBody.latitude,
-       "outletId":id,
-       "beat":outletBody.beat,
-       "url":outletBody.imgurl,
-       "distributor": outletBody.distributor
-      })
-} 
+    const savedOut = await OutletModel.Outlet.create({
+    name: outletBody.name,
+    email: outletBody.email,
+    password: outletBody.password,
+    username: outletBody.username,
+    phoneno: outletBody.phoneno,
+    pincode: outletBody.pincode,
+    district: outletBody.district,
+    outletstate: outletBody.outletstate,
+    state: outletBody.state,
+    city: outletBody.city,
+    address: outletBody.address,
+    outletlevel: outletBody.outletlevel,
+    area: outletBody.area,
+    outlettype: outletBody.outlettype,
+    ownername: outletBody.ownername,
+    owneraadhar: outletBody.owneraadhar,
+    gstno: outletBody.gstno,
+    dinNo: outletBody.dinNo,
+    foodlicenceno: outletBody.foodlicenceno,
+    cinno: outletBody.cinno,
+    longitude: outletBody.longitude,
+    latitude: outletBody.latitude,
+    outletId: id,
+    beat: outletBody.beat,
+    url: outletBody.imgurl,
+    distributor: outletBody.distributor
+});
+console.log(outletBody.distributor)
+// const dist = DistributorModel.findOne({"_id":outletBody.distributor})
+// console.log(dist)
+ await DistributorModel.findByIdAndUpdate(
+  outletBody.distributor,
+  { $push: { outlets: mongoose.Types.ObjectId(savedOut._id) } },
+  { new: true }
+);
+return console.log(outletBody.distributor)
+}
+// console.log(outletBody.distrubutor)
 
 const loginOutlet = async (outletBody,res) =>{
     if (nullChecker(outletBody.username))

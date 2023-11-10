@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const zoneSchema = new mongoose.Schema({
   zoneId: {
-    type: Number
+    type: String
   },
   name: {
     type: String
@@ -21,7 +21,7 @@ const zoneSchema = new mongoose.Schema({
   },
   distributor: [{
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Distributor'
+    ref: 'DistributorModel'
   }],
   warehouse: [{
     type: mongoose.Schema.Types.ObjectId, 
