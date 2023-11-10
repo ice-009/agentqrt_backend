@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 
 const zoneSchema = new mongoose.Schema({
   zoneId: {
-    type: String
+    type: Number
   },
   name: {
     type: String
   },
-  pincode: [{
-    type: Number,
+  pincode: {
+    type: String,
     trim: true,
-  }],
+  },
   district: [{
     type: String,
     trim: true,
@@ -26,8 +26,17 @@ const zoneSchema = new mongoose.Schema({
   warehouse: [{
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Warehouse'
-  }]
-});
+  }],
+
+    // type: mongoose.Schema.Types.ObjectId, 
+    // ref: 'Organization'
+    // organization: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'Organization',
+    //   // required: true
+    // }
+  }
+);
 
 const ZoneModel = mongoose.model('Zone', zoneSchema);
 

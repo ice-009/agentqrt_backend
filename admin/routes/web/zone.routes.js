@@ -3,10 +3,13 @@ const { adminToken } = require('../../../middleware/auth');
 const { AdminZoneController } = require('../../controller');
 const ZoneModel =  require('../../../model/zone')
 const router = express.Router();
+const {DistributorModel} = require('../../../model/distributor')
 
-router.get('/create', adminToken, AdminZoneController.homeZone);
+// router.get('/create',
+// //  adminToken,
+//  AdminZoneController.homeZone);
 
-router.post('/create', adminToken, AdminZoneController.createZone);
+router.post('/create', AdminZoneController.createZone);
 
 
 router.get(
@@ -19,18 +22,15 @@ router.get(
   });
   
   router.get('/:id', async (req, res) => {
-    try {
-      const zoneId = req.params.id; 
-      const zone = await ZoneModel.findOne({ zoneId }); 
+    const id = req.params.id;
   
-      if (!zone) {
-        return res.status(404).json({ error: 'Zone not found' });
-      }
-
-      res.json(zone);
+    try {
+      const distributors = await DistributorModel.find({ parentzoneid: id});
+  
+      res.status(200).json({ distributors });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server error' });
+      console.error('Error fetching warehouses:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 module.exports = router;

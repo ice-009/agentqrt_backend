@@ -2,7 +2,8 @@ const catchAsync = require("../../utils/catchAsync");
 const adminZoneService = require("../service/zone");
 const adminDistWareService = require("../service/dis_ware");
 const ZoneModel = require("../../model/zone");
-
+const mongoose = require('mongoose')
+const {OrganizationModel} = require("../../model/organization");
 const createDistributor = catchAsync(async (req, res) => {
   try {
     await adminZoneService.createDistributor(req.params.id, req.body);
@@ -30,8 +31,8 @@ const createWareHouse = catchAsync(async (req, res) => {
 
 const createZone = catchAsync(async (req, res) => {
   try {
-    const { zoneId, name, pincode, district, parentId, distributor, warehouse } = req.body;
-
+    const { zoneId, name, pincode, district, parentId, distributor, warehouse, organization } = req.body;
+    const organizationId = mongoose.Types.ObjectId(organization);
     // Create a new zone in the database using your model (ZoneModel)
     const newZone = new ZoneModel({
       zoneId,
@@ -41,9 +42,17 @@ const createZone = catchAsync(async (req, res) => {
       parentId,
       distributor,
       warehouse,
+      organization: organizationId // Assuming organization is the ObjectId of the associated organization
     });
 
     const savedZone = await newZone.save();
+
+    // Add the new zone's zoneId to the listzone array of the corresponding organization
+    await OrganizationModel.findByIdAndUpdate(
+      organizationId,
+      { $push: { listzone: savedZone._id } },
+      { new: true }
+    );
 
     res.status(201).json(savedZone);
   } catch (err) {
@@ -51,6 +60,8 @@ const createZone = catchAsync(async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the zone.' });
   }
 });
+
+
 
 const homeZone = catchAsync(async (req, res) => {
   // const zone = await adminZoneService.getByZoneIdname(req.params.id);

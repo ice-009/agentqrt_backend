@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+
+    <!-- Include custom CSS files -->
+    <link rel="stylesheet" href="../../../../css/home.admin.css">
+    <link rel="stylesheet" href="../../../../css/admin/crorg.css">
+    <link rel="stylesheet" href="../../../../css/admin/crorg_c.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <ul class="accordiann">
+                    <li>
+                        <input type="radio" name="accordian" id="first" checked="true">
+                        <label for="first">Dashboard</label>
+                        <div class="content">
+                            <div class="contentlist"><a href="../user">Users</a></div>
+                            <div class="contentlist"><a href="../organization/getallorg">Organizations</a></div>
+                            <div class="contentlist"><a href="">Unapproved Outlets</a></div>
+                            <div class="contentlist"><a href="">Outlet density Map</a></div>
+                            <div class="contentlist"><a href="">Update User Targets</a></div>
+                            <div class="contentlist"><a href="">Set Outlet Targets</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-9">
+                {{#each organizations}}
+                    <div class="p-2 bordered">
+                        <button class="btn btn-primary toggler" type="button" data-target="{{orgId}}">
+                            {{orgname}}
+                        </button>
+
+                        <!-- Collapsed content -->
+                        <div class="collapse mt-3" id="{{orgId}}">
+                            <ul>
+                                {{#each listzone}}
+                                    <button class="btn btn-primary toggler zone-button" data-zone-id="{{this._id}}">
+                                        <div class="p-2 bordered">{{this._id}}{{this.zoneName}}</div>
+                                    </button>
+                                    <div class="collapse mt-3" id="{{this._id}}">
+                                        <!-- Add content related to the zone if needed -->
+                                    </div>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <script>
+        var togglers = document.querySelectorAll(`.toggler`);
+        togglers.forEach(function (toggler) {
+            toggler.addEventListener(`click`, function () {
+                const selector = toggler.getAttribute(`data-target`).toString()
+                const element = document.getElementById(selector)
+                element.classList.toggle(`show`);
+            });
+        });
+
+        // Add event listener to zone buttons for redirection
+        var zoneButtons = document.querySelectorAll('.zone-button');
+        zoneButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const zoneId = button.getAttribute('data-zone-id');
+                window.location.href = `/api/v1/admin/zone/${zoneId}`;
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -21,6 +21,11 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use(fileUpload())
 
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "script-src 'self' https://cdn.jsdelivr.net https://example.com https://other-cdn.com https://cdnjs.cloudflare.com 'unsafe-inline'");
+  next();
+});
+
 
 // const templatePath = path.join(__dirname,"../templates")
 const partialPath = path.join(__dirname,"./partials")

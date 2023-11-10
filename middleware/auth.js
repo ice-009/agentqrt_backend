@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 const ApiError = require('../utils/ApiError');
 const httpStatus = require('http-status');
+const JWT_SECRET = process.env.JWT_SECRET;
+// if(!JWT_SECRET){
+//   throw new Error('JWT_SECRET is missing')
+// }
 const authToken = (req, res, next) => {
   const token =
     req.headers['token'] || req.body.token || req.query.token || req.headers['x-access-token'];
@@ -24,9 +28,11 @@ const adminToken = (req,res,next) =>{
     try {
       console.log(cookie.token)
       const decoded = jwt.verify(cookie.token, process.env.JWT_SECRET);
-      req.user = decoded;
+      console.log(c)
+      res.user = decoded;
     } catch (err) {
-      res.redirect("/admin/login")
+      res.send('Please Login First')
+      // res.redirect("/admin/login")
       // return res.status(401).send('Invalid cookie');
     }
     return next();

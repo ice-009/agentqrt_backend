@@ -5,6 +5,7 @@ const organizationSchema = mongoose.Schema({
   orgId: {
     type:Number,
     unique: true,
+    required: true
   },
   orgname: {
     type: String
@@ -61,10 +62,9 @@ const organizationSchema = mongoose.Schema({
   contactperson:{
     type:String
   },
-  listzone:[{
-     type:Number
-  }]
-
+  listzone: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Zone'}]
 }); 
 
 organizationSchema.statics.isEmailTaken = async function (email, excludeUserId) {

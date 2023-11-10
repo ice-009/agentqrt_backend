@@ -66,7 +66,7 @@ const createDistributor = async(zoneId,body)=>{
         //   }
           
         
-    const listdistributor =element.distributor
+    // const listdistributor =element.distributor
 
 
     const distributorId = await Distributor.DistributorModel.find().sort({ "distributorId": -1 }).limit(1);

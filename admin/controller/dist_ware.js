@@ -13,7 +13,7 @@ const createWarehouse =  catchAsync(async(req,res)=>{
 })
 
 const createDistributorPost = catchAsync(async(req,res)=>{
-     await DistWareService.createDistributor(req.body.zoneId,req.body)
+     await DistWareService.createDistributor(req.body,req.body)
      res.redirect("/admin/zone/"+req.body.zoneId)
 })
 
