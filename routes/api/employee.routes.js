@@ -1,28 +1,31 @@
 const express = require('express');
-//const authValidation = require('../validation/authValidation');
-// const validator = require('../middlewares/validator');
+// const authValidation = require('../validation/authValidation');
+// const validator = require('../../middleware/validator');
 const { employeeController } = require('../../controller');
 const { authToken } = require('../../middleware/auth');
 const router = express.Router();
 
-// router.post(
-//   '/create',
-//   //validator(authValidation.register),
-//   employeeController.createEmployee
-// );
-// router.post(
-//   '/edit',
-//   employeeController.editEmployee
-// ) 
-// router.post(
-//   '/delete',
-//   employeeController.deleteEmployee
-// )
+router.get('/create', (req,res)=>{
+  res.json('hello');
+})
 router.post(
-  '/salesmen/login',
-  employeeController.salesmenLogin
+  '/create',
+  // validator(authValidation.register),
+  employeeController.createEmployee
 );
+router.post(
+  '/edit',
+  employeeController.editEmployee
+) 
+router.post(
+  '/delete',
+  employeeController.deleteEmployee
+)
 // router.post(
+//   '/salesmen/login',
+//   employeeController.salesmenLogin
+// );
+// // router.post(
 //   '/forgot-password',
 //   authController.forgotPassword
 // );

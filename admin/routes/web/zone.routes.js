@@ -4,7 +4,7 @@ const { AdminZoneController } = require('../../controller');
 const ZoneModel =  require('../../../model/zone')
 const router = express.Router();
 const {DistributorModel} = require('../../../model/distributor')
-
+const {Outlet} = require('../../../model/outlet')
 // router.get('/create',
 // //  adminToken,
 //  AdminZoneController.homeZone);
@@ -21,16 +21,41 @@ router.get(
     }
   });
   
-  router.get(
-    '/:id',
-    adminToken, async (req,res)=>{
+  router.get('/:id', adminToken, async (req, res) => {
+    try {
       const id = req.params.id;
-      const zonedata = await ZoneModel.findById(id).exec()
-      console.log(zonedata)
-      // console.log(id)
-      const data = await DistributorModel.find({parentzoneid:id}).exec()
-      console.log("here is data", data)  
-      res.render("admin/Distributor/distributor",{id, data})
+  
+      // Find the zone
+      const zoneData = await ZoneModel.findById(id).exec();
+      if (!zoneData) {
+        return res.status(404).send('Zone not found');
+      }
+  
+      // Find distributors for the specified zone
+      const distributors = await DistributorModel.find({ parentzoneid: id }).exec();
+  
+      // Iterate through distributors and retrieve outlet information
+      const distributorData = [];
+      for (const distributor of distributors) {
+        const outletIds = distributor.outlets; // Assuming outlets is an array of outlet IDs
+  
+        // Find outlet information using outlet IDs
+        const outlets = await Outlet.find({ _id: { $in: outletIds } }).exec();
+  
+        // Push data to distributorData array
+        distributorData.push({
+          distributor: distributor,
+          outlets: outlets,
+        });
+      }
+  
+      console.log('Distributor Data:', distributorData);
+      console.log(distributorData.outlets)
+      res.render('admin/Distributor/distributor', { id, distributorData });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
-    );
+  });
+  
 module.exports = router;

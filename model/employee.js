@@ -28,7 +28,7 @@ const employeeSchema = mongoose.Schema({
         trim: true
     },
 
-    aaadhar: {
+    aadhar: {
         type: String,
         required: true
     },
