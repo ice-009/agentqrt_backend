@@ -7,7 +7,7 @@ const adminDistributorRoute = require("../../admin/routes/web/distributor.routes
 const adminWarehouseRoute = require("../../admin/routes/web/warehouse.routes")
 const distributorRoute = require('../../distributor/routes/web/auth.routes')
 const organizationRoute = require("../../organization/routes/web/auth.routes")
-
+const employeeRoute = require("../../users/routes/web/index.routes")
 
 
 const defaultRoutes = [
@@ -42,6 +42,10 @@ const defaultRoutes = [
     {
       path:"/organization",
       route:organizationRoute
+    },
+    {
+      path: "/employee",
+      route: employeeRoute
     }
   ]
 

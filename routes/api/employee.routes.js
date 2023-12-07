@@ -5,12 +5,13 @@ const { employeeController } = require('../../controller');
 const { authToken } = require('../../middleware/auth');
 const router = express.Router();
 
-router.get('/create', (req,res)=>{
+router.get('/create', authToken,(req,res)=>{
   res.json('hello');
 })
 router.post(
   '/create',
   // validator(authValidation.register),
+  // authToken,
   employeeController.createEmployee
 );
 router.post(
