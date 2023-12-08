@@ -32,18 +32,25 @@ const loginpost = catchAsync(async (req, res) => {
     if (!isMatch) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'Invalid credentials');
     }
+    
+    
     const accessToken = await signAccessToken(user.id);
     const refreshToken = await signRefreshToken(user.id);
-    res.cookie('access_token', accessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-      });
-  
-      res.cookie('refresh_token', refreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-      });
-    return res.json({accessToken,refreshToken})
+
+res.cookie('access_token', accessToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+});
+
+res.cookie('refresh_token', refreshToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+});
+
+return res.redirect(`profile/${user.id}`);
+
+    // return res.json({accessToken,refreshToken})
+    // return res.redirect('/profile/:userId')
 });
 
 module.exports={

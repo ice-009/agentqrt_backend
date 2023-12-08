@@ -6,7 +6,9 @@ const { EmployeeModel } = require('../../model/employee');
 module.exports = {
     signAccessToken: (userId) => {
         return new Promise((resolve, reject) => {
-            const payload = {};
+            const payload = {
+                id: userId
+            };
             const secret = process.env.ACCESS_TOKEN_SECRET;
             const options = {
                 expiresIn: "1y",
@@ -21,38 +23,37 @@ module.exports = {
             });
         });
     },
-    verifyAccessToken: (req, res, next) => {
-        console.log("req.headers", req.headers);
-        const err = new Error('Not authenticated');
+    
+    // Update the verifyAccessToken function
+verifyAccessToken: (req, res, next) => {
+    const err = new Error('Not authenticated');
 
-        // Check if 'cookie' header exists
-        if (!req.headers['cookie']) {
-            throw err;
-        }
+    if (!req.headers['cookie']) {
+        throw err;
+    }
 
-        // Parse cookies from 'cookie' header
-        const cookies = cookie.parse(req.headers['cookie']);
+    const cookies = cookie.parse(req.headers['cookie']);
+    const accessToken = cookies['access_token'];
 
-        // Extract the access token from cookies
-        const accessToken = cookies['access_token'];
+    if (!accessToken) {
+        throw err;
+    }
 
-        if (!accessToken) {
-            throw err;
-        }
-
-        JWT.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
-            if (err) {
-                if (err.name === 'JsonWebTokenError') {
-                    return next(createError.Unauthorized());
-                } else {
-                    return next(createError.Unauthorized(err.message));
-                }
+    JWT.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+        if (err) {
+            if (err.name === 'JsonWebTokenError') {
+                return next(createError.Unauthorized());
+            } else {
+                return next(createError.Unauthorized(err.message));
             }
+        }
 
-            req.payload = payload;
-            next();
-        });
-    },
+        req.user = payload;  // Assign the entire payload to req.user
+        console.log("payload:", payload)
+        next();
+    });
+},
+
     signRefreshToken: (userId) => {
         return new Promise((resolve, reject) => {
             const payload = {};
