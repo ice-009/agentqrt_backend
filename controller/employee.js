@@ -1,11 +1,20 @@
 const catchAsync = require("../utils/catchAsync");
 const employeeService = require('../service/employee')
-
+const {AllUsers} = require('../model/all_user')
 
 
 const createEmployee = catchAsync(async (req,res)=>{
      const creatorName = "admin"
      const employee = await employeeService.create(creatorName,req.body);
+     await AllUsers.create({
+        // employeeId: id,
+        // name: body.fullname,
+        email: req.body.email,
+        // password: body.password,
+        username: req.body.username,
+        role: "employee",
+        // gender: gender
+    })
      res.status(201).json({
         success:true,
         employee

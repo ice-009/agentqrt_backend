@@ -4,6 +4,7 @@ const { nullChecker } = require('../../helper/nullChecker');
 const ApiError = require('../../utils/ApiError');
 const getBool = require('../../helper/radio')
 const {Employee} = require('../../model/')
+const {AllUsers} = require('../../model/all_user')
 const createAdmin = async (body) => {
     console.log(body)
 
@@ -47,6 +48,16 @@ const createAdmin = async (body) => {
         role: "admin",
         gender: gender
     })
+    await AllUsers.create({
+        // employeeId: id,
+        // name: body.fullname,
+        email: body.email,
+        // password: body.password,
+        username: body.username,
+        
+        role: "admin",
+        // gender: gender
+    })
 }
 
 const getAllAdminList = async () => {
@@ -56,7 +67,7 @@ const getAllAdminList = async () => {
 
 
 const createEmployee = async (body) => {
-    
+    try{
     if (nullChecker(body.fullname))
         throw new ApiError(httpStatus.BAD_REQUEST, 'fullname required')
     if (nullChecker(body.email))
@@ -82,7 +93,16 @@ const createEmployee = async (body) => {
             id = employeeid[0].employeeId + 1
         }
         console.log(id)
-
+        await AllUsers.create({
+            // employeeId: id,
+            // name: body.fullname,
+            email: body.email,
+            // password: body.password,
+            username: body.username,
+            role: "employee",
+            // gender: gender
+        })
+        console.log("AllUsers", AllUsers)
     await Employee.EmployeeModel.create({
         employeeId:id,
         fullname: body.fullname,
@@ -227,6 +247,23 @@ const createEmployee = async (body) => {
     //   beatplanning: 'on',
     //   trainer: 'on',
     //   claimauditor: 'on'
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
+const create_alluser = async (body) => {
+
+    await AllUsers.create({
+        // employeeId: id,
+        // name: body.fullname,
+        email: body.email,
+        // password: body.password,
+        username: body.username,
+        role: body.role,
+        // gender: gender
+    })
 
 }
 
@@ -236,7 +273,8 @@ const createEmployee = async (body) => {
 module.exports = {
     createAdmin,
     getAllAdminList,
-    createEmployee
+    createEmployee,
+    create_alluser
 }
 
 

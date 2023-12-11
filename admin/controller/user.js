@@ -4,7 +4,7 @@ const { nullChecker } = require('../../helper/nullChecker');
 const bcrypt = require('bcryptjs');
 const sendToken = require('../../utils/sendtoken');
 const adminuserService = require('../service/user')
-
+const {AllUsers} = require('../../model/all_user')
 
 
 const createAdminGet = catchAsync(async (req, res) => {
@@ -16,6 +16,15 @@ const createAdminPost = catchAsync(async (req, res) => {
 
     try {
         await adminuserService.createAdmin(req.body)
+        await AllUsers.create({
+            // employeeId: id,
+            // name: body.fullname,
+            email: req.body.email,
+            // password: body.password,
+            username: req.body.username,
+            role: "admin",
+            // gender: gender
+        })
         res.redirect("./admin")
     } catch (error) {
         console.log(error.status + " " + error.message)

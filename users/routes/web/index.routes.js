@@ -16,6 +16,8 @@ router.post('/login', loginpost);
 router.get('/hello', verifyAccessToken, (req, res) => {
     res.send('its done isnt it')})
 router.get('/profile/:userId',verifyAccessToken, profileController.getUserProfile);
-router.get('/edit')
+// router.get('/edit')
+
+
 
 module.exports = router;
