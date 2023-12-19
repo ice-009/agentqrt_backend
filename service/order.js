@@ -19,7 +19,6 @@ const createOrder = async(employee,orderBody)=>{
       throw new ApiError(httpStatus.BAD_REQUEST, 'piece price_required');
     if (nullChecker(orderBody.amount))
       throw new ApiError(httpStatus.BAD_REQUEST, 'amount_required');
-    
     const orderid = await Order.find().sort({"orderId":-1}).limit(1);
     var id;
     if(orderid.length==0){

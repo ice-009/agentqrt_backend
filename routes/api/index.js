@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const outletRoute = require('./outlet.routes')
-const orderRoute = require('./order.routes')
+const orderRoute = require('../../special_feautres/order/routes/index')
 const employeeRoute = require('./employee.routes')
 const reportRoute = require('../../admin/routes/api/report.routes')
 
