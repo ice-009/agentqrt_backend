@@ -49,7 +49,7 @@ verifyAccessToken: (req, res, next) => {
         }
 
         req.user = payload;  // Assign the entire payload to req.user
-        console.log("payload:", payload)
+        // console.log("payload:", payload)
         next();
     });
 },

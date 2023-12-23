@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const {create_Order} = require('../controllers/orders');
-
+// const {signAccessToken, signRefreshToken, verifyRefreshToken} = require('../new_auth/jwt_helper');
+const { verifyAccessToken } = require('../../../users/new_auth/jwt_helper');
 // Define the route for creating an order
-router.post('/create', create_Order);
-router.get('/get', (req, res) => {
-    res.send('Hello World!');
+router.post('/create',verifyAccessToken, create_Order);
+router.get('/create',verifyAccessToken, (req,res)=>{
+    res.render('orders/create.hbs');
+})
+router.get('/get', verifyAccessToken, (req, res) => {
+    const employee = req.user;
+    console.log(employee);
 }); 
 
 module.exports = router;

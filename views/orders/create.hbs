@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+</head>
+<body>
+    <h1>Order Form</h1>
+
+<form action="/api/api/v1/order/create" method="post">
+
+        <label for="productId">Product ID (comma-separated):</label>
+        <input type="text" id="productId" name="productId" required>
+
+        <label for="companyId">Company ID:</label>
+        <input type="text" id="companyId" name="companyId" required>
+
+        <label for="reason">Reason (comma-separated):</label>
+        <input type="text" id="reason" name="reason" required>
+
+        <label for="quantity">Quantity (comma-separated):</label>
+        <input type="text" id="quantity" name="quantity" required>
+
+        <label for="pieceprice">Piece Price (comma-separated):</label>
+        <input type="text" id="pieceprice" name="pieceprice" required>
+
+        {{!-- <label for="amount">Amount (comma-separated):</label>
+        <input type="text" id="amount" name="amount" required> --}}
+
+        <label for="outletId">Outlet ID:</label>
+        <input type="text" id="outletId" name="outletId" required>
+
+        <button type="submit">Submit Order</button>
+    </form>
+</body>
+</html>
