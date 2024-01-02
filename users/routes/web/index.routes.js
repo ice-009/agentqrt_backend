@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../new_auth/jwt_helper");
+const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../../new_auth/jwt_helper");
 const {login, loginpost} = require('../../controllers/auth');
 const profileController = require('../../controllers/profileController');
 // router.get('/edit',)

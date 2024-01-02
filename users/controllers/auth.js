@@ -8,7 +8,7 @@ const httpStatus = require("http-status");
 // const sendTokenWeb = require("../../utils/sendtoken");
 // const blacklistedTokens = new Set();
 const {EmployeeModel} =  require('../../model/employee')
-const {signAccessToken, signRefreshToken, verifyRefreshToken} = require('../new_auth/jwt_helper');
+const {signAccessToken, signRefreshToken, verifyRefreshToken} = require('../../new_auth/jwt_helper');
 
 const login = catchAsync(async (req,res)=>{
     res.render('user/login.hbs')

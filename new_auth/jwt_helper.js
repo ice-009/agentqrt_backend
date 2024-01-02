@@ -1,7 +1,7 @@
 const JWT = require('jsonwebtoken');
 const createError = require('http-errors');
 const cookie = require('cookie');
-const { EmployeeModel } = require('../../model/employee');
+const { EmployeeModel } = require('../model/employee');
 
 module.exports = {
     signAccessToken: (userId) => {

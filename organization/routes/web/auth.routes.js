@@ -50,8 +50,4 @@ console.log('Organizations after population:', organizations);
   }
 });
 
-
-
-
-
 module.exports = router;
