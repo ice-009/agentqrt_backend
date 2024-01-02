@@ -1,6 +1,6 @@
 // onst OrganizationModel
 const { OrganizationModel } = require("../../model/organization");
-const catchAsync = require("../../utils/catchAsync");
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
 const authService = require('../service/auth')
 async function generateUniqueOrgId() {
   try {

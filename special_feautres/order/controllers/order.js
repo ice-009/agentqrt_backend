@@ -1,6 +1,6 @@
-const catchAsync = require("../utils/catchAsync");
+const catchAsync = require("../../../AddtionalFolders/utils/catchAsync");
 const orderService = require('../service/order')
-const sendToken = require('../utils/sendtoken');
+const sendToken = require('../../../AddtionalFolders/utils/sendtoken');
 
 
 const createOrder = catchAsync(async (req,res)=>{

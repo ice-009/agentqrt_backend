@@ -1,9 +1,9 @@
-const catchAsync = require("../../utils/catchAsync");
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
 // const httpStatus = require("http-status");
-const { nullChecker } = require('../../helper/nullChecker');
+const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
 const bcrypt = require('bcryptjs');
 // const sendToken = require('../../utils/sendtoken');
-const ApiError = require('../../utils/ApiError')
+const ApiError = require('../../AddtionalFolders/utils/ApiError')
 const httpStatus = require("http-status");
 // const sendTokenWeb = require("../../utils/sendtoken");
 // const blacklistedTokens = new Set();

@@ -1,6 +1,6 @@
-const catchAsync = require("../utils/catchAsync");
-const employeeService = require('../service/employee')
-const {AllUsers} = require('../model/all_user')
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
+const employeeService = require('../services/employee')
+const {AllUsers} = require('../../model/all_user')
 
 
 const createEmployee = catchAsync(async (req,res)=>{

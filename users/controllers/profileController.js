@@ -1,8 +1,8 @@
 // profileController.js
 
-const catchAsync = require("../../utils/catchAsync");
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
 const httpStatus = require("http-status");
-const ApiError = require('../../utils/ApiError');
+const ApiError = require('../../AddtionalFolders/utils/ApiError');
 const { EmployeeModel } = require('../../model/employee');
 
 const getUserProfile = catchAsync(async (req, res) => {

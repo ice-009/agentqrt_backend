@@ -1,10 +1,10 @@
 const httpStatus = require("http-status");
-const { nullChecker } = require('../helper/nullChecker');
-const ApiError = require('../utils/ApiError');
+const { nullChecker } = require('../../../AddtionalFolders/helper/nullChecker');
+const ApiError = require('../../../AddtionalFolders/utils/ApiError');
  
 const bcrypt = require('bcryptjs');
-const sendToken = require('../utils/sendtoken');
-const Order = require('../model/order')
+const sendToken = require('../../../AddtionalFolders/utils/sendtoken');
+const Order = require('../../../model/order')
 
 
 

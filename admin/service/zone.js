@@ -1,6 +1,6 @@
 const httpStatus = require("http-status");
-const { nullChecker } = require('../../helper/nullChecker');
-const ApiError = require('../../utils/ApiError');
+const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
+const ApiError = require('../../AddtionalFolders/utils/ApiError');
 const { Zone } = require("../../model/");
 
 

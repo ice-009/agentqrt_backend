@@ -1,8 +1,8 @@
 const express = require('express');
 // const authValidation = require('../validation/authValidation');
 // const validator = require('../../middleware/validator');
-const { employeeController } = require('../../controller');
-const { authToken } = require('../../middleware/auth');
+const { employeeController } = require('../../../controller');
+const { authToken } = require('../../../middleware/auth');
 const router = express.Router();
 
 router.get('/create', authToken,(req,res)=>{

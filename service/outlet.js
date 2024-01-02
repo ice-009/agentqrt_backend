@@ -1,11 +1,11 @@
 const httpStatus = require("http-status");
-const { nullChecker } = require('../helper/nullChecker');
-const ApiError = require('../utils/ApiError');
+const { nullChecker } = require('../AddtionalFolders/helper/nullChecker');
+const ApiError = require('../AddtionalFolders/utils/ApiError');
 var validator = require("email-validator");
-const { valueChecker } = require('../helper/valuechecker');
+const { valueChecker } = require('../AddtionalFolders/helper/valuechecker');
 const Joi = require('joi');
 const bcrypt = require('bcryptjs');
-const sendToken = require('../utils/sendtoken');
+const sendToken = require('../AddtionalFolders/utils/sendtoken');
 const OutletModel = require("../model/outlet");
 const { DistributorModel } = require("../model/distributor");
 const mongoose = require('mongoose')

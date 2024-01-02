@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../AddtionalFolders/utils/ApiError');
 const httpStatus = require('http-status');
 const JWT_SECRET = process.env.JWT_SECRET;
 

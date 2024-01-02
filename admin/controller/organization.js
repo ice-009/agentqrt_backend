@@ -1,4 +1,4 @@
-const catchAsync = require("../../utils/catchAsync");
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
 const adminOrganizationService = require("../service/organization")
 
 

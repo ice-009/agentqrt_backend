@@ -1,8 +1,8 @@
 const { AdminModel } = require("../../model");
-const catchAsync = require("../../utils/catchAsync");
-const { nullChecker } = require('../../helper/nullChecker');
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
+const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
 const bcrypt = require('bcryptjs');
-const sendToken = require('../../utils/sendtoken');
+const sendToken = require('../../AddtionalFolders/utils/sendtoken');
 const adminuserService = require('../service/user')
 const {AllUsers} = require('../../model/all_user')
 

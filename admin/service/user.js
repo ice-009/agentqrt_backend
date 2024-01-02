@@ -1,8 +1,8 @@
 const { AdminModel } = require("../../model")
 const httpStatus = require("http-status");
-const { nullChecker } = require('../../helper/nullChecker');
-const ApiError = require('../../utils/ApiError');
-const getBool = require('../../helper/radio')
+const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
+const ApiError = require('../../AddtionalFolders/utils/ApiError');
+const getBool = require('../../AddtionalFolders/helper/radio')
 const {Employee} = require('../../model/')
 const {AllUsers} = require('../../model/all_user')
 const createAdmin = async (body) => {

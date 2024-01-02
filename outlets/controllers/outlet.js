@@ -1,7 +1,7 @@
-const catchAsync = require('../utils/catchAsync');
+const catchAsync = require('../../AddtionalFolders/utils/catchAsync');
 const httpStatus = require('http-status');
-const outletService = require('../service/outlet');
-const sendToken = require('../utils/sendtoken');
+const outletService = require('../../service/outlet');
+const sendToken = require('../../AddtionalFolders/utils/sendtoken');
 var validator = require("email-validator");
 
 

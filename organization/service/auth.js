@@ -1,6 +1,6 @@
 const {Organization} = require('../../model/')
 const {sendTokenWeb} = require('../util/token')
-const { nullChecker } = require('../../helper/nullChecker');
+const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
 const bcrypt = require('bcryptjs')
 
 const login = async (body, res) => {

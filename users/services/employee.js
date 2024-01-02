@@ -1,9 +1,9 @@
-const { nullChecker } = require('../helper/nullChecker');
-const {EmployeeModel } = require('../model/employee')
-const ApiError = require('../utils/ApiError');
+const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
+const {EmployeeModel } = require('../../model/employee')
+const ApiError = require('../../AddtionalFolders/utils/ApiError');
 const httpStatus = require("http-status");
 const bcrypt = require('bcryptjs')
-const sendToken = require('../utils/sendtoken')
+const sendToken = require('../../AddtionalFolders/utils/sendtoken')
 
 const create = async(createrUsername,employeeBody) =>{
     

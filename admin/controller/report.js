@@ -3,7 +3,7 @@ const { faker } = require('@faker-js/faker');
 var path = require('path')
 const ReportModel = require('../../model/sales_report')
 const XLXS = require('xlsx')
-const catchAsync = require("../../utils/catchAsync");
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
 const CsvParser = require('json2csv').Parser
 
 

@@ -1,7 +1,7 @@
-const ApiError = require('../utils/ApiError')
-const nullChecker = require('../helper/nullChecker')
+const ApiError = require('../../../utils/ApiError')
+const nullChecker = require('../../../helper/nullChecker')
 const httpStatus = require('http-status')
-const BeatModel = require('../model/beat')
+const BeatModel = require('../../../model/beat')
 
 const createBeat = async(body)=>{
      

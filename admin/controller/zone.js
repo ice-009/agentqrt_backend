@@ -1,4 +1,4 @@
-const catchAsync = require("../../utils/catchAsync");
+const catchAsync = require("../../AddtionalFolders/utils/catchAsync");
 const adminZoneService = require("../service/zone");
 const adminDistWareService = require("../service/dis_ware");
 const ZoneModel = require("../../model/zone");
