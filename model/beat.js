@@ -9,6 +9,7 @@ const beatSchema = mongoose.Schema({
   },
   outletId:{
     type:Number,
+    required:true
   },
   outletname:{
     type:String
@@ -19,15 +20,18 @@ const beatSchema = mongoose.Schema({
     required:true
   },
   leadstatus:{
-    type:String
+    type:String,
+    required:true
   },
   // it may be change in future enough information 
   //enum based
   category:{
-    type:String
+    type:String,
+    required:true
   },
   address:{
-    type:String
+    type:String,
+    required:true
   },
 
   
@@ -37,4 +41,4 @@ const beatSchema = mongoose.Schema({
 
 const Beat = mongoose.model('Beat', beatSchema);
 
-module.exports = Beat;
+module.exports = { Beat };

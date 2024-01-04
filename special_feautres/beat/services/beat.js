@@ -1,27 +1,45 @@
-const ApiError = require('../../../utils/ApiError')
-const nullChecker = require('../../../helper/nullChecker')
+const ApiError = require('../../../AddtionalFolders/utils/ApiError')
+const nullChecker = require('../../../AddtionalFolders/helper/nullChecker')
 const httpStatus = require('http-status')
-const BeatModel = require('../../../model/beat')
+const {Beat} = require('../../../model/beat')
 
-const createBeat = async(body)=>{
-     
-    if(nullChecker(body.name)) 
-        throw new ApiError(httpStatus.BAD_REQUEST,"beat name cannot be empty")
-    if(nullChecker(body.erpid))
-        throw new ApiError(httpStatus.BAD_REQUEST,"erpid cannot be empty")
-    
+const createBeat = async (body) => {
+
+    try {
+        const beatid = await Beat.find().sort({ "beatId": -1 }).limit(1);
+        let id;
+
+        if (beatid.length === 0 || !beatid[0].hasOwnProperty('beatId')) {
+            id = 1;
+        } else {
+            id = beatid[0].beatId + 1;
+        }
+
+        return await Beat.create({
+            beatId: id,
+            outletId: body.outletId,
+            outletname: body.outletname,
+            outleterpid: body.outleterpid,
+            leadstatus: body.leadstatus,
+            category: body.category,
+            address: body.address
+        });
+    } catch (error) {
+        console.error('Error creating beat:', error.message);
+        throw new ApiError(500, "Internal Server Error");
+    }
 }
 
 const deleteBeat = async(id)=>{
     
-    await BeatModel.Beat.findOneAndDelete({"beatId":id})
+    await Beat.findOneAndDelete({"beatId":id})
 
     return true
 }
 
 
 const editBeat = async(id,body)=>{
-    await BeatModel.Beat.findOneAndUpdate({
+    await Beat.findOneAndUpdate({
         name:body.name,
         erpid:body.erpid
     })
