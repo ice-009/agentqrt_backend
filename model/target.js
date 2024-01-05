@@ -14,11 +14,11 @@ const targetSchema = new mongoose.Schema({
         required: true,
     },
     OutletId : {
-        type: string,
+        type: String,
         required: true,
     },
 });
 
 const Target = mongoose.model('Target', targetSchema);
 
-module.exports = Target;
+module.exports = { Target };
