@@ -46,8 +46,8 @@ res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
 });
-
-return res.redirect(`profile/${user.id}`);
+return res.json(accessToken)
+// return res.redirect(`profile/${user.id}`);
 
     // return res.json({accessToken,refreshToken})
     // return res.redirect('/profile/:userId')
