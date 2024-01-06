@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const beatController = require('../controllers/beat');
 const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../../new_auth/jwt_helper");
-router.get('/test', (req, res) => {
+router.get('/test', verifyAccessToken, (req, res) => {
     res.json('hello');  // working fine
     });
 
