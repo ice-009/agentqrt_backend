@@ -2,7 +2,7 @@ const express = require('express');
 const { adminToken } = require('../../../middleware/auth');
 const {AdminDistWareController } = require('../../controller');
 const {DistributorModel} = require('../../../model/distributor')
-
+const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../../new_auth/jwt_helper");
 const router = express.Router();
 // const id = DistributorModel
 
