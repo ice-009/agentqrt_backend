@@ -8,7 +8,9 @@ const profileController = require('../../controllers/profileController');
 
 router.get('/login',login);
 router.post('/login', loginpost);
-
+router.get('/test', verifyAccessToken, (req, res) => {
+    res.send('its done isnt it')
+})
 router.get('/hello', verifyAccessToken, (req, res) => {
     res.send('its done isnt it')})
 router.get('/profile/:userId',verifyAccessToken, profileController.getUserProfile);
