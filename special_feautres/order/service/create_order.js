@@ -11,8 +11,17 @@ const createOrder = async (employee, orderBody) => {
   if (nullChecker(orderBody.pieceprice))
     throw new ApiError(httpStatus.BAD_REQUEST, 'piece price required');
 
-  // Calculate the amount based on pieceprice * quantity
-  const amount = orderBody.pieceprice * orderBody.quantity;
+  // Check if the length of quantity and pieceprice arrays match
+  if (orderBody.quantity.length !== orderBody.pieceprice.length) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Quantity and piece price arrays must have the same length');
+  }
+
+  // Calculate the total amount for each product and sum them up
+  const amount = orderBody.quantity.reduce((total, quantity, index) => {
+    const pieceprice = orderBody.pieceprice[index];
+    const productAmount = quantity * pieceprice;
+    return total + productAmount;
+  }, 0);
 
   const orderid = await Order.find().sort({ "orderId": -1 }).limit(1);
   var id;
@@ -29,7 +38,7 @@ const createOrder = async (employee, orderBody) => {
     reason: orderBody.reason,
     quantity: orderBody.quantity,
     pieceprice: orderBody.pieceprice,
-    amount: amount, 
+    amount: amount,
     outletId: orderBody.outletId
   });
 }

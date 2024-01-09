@@ -30,6 +30,7 @@ const orderSchema = mongoose.Schema({
   }],
   amount: [{
     type: Number,
+    required: true
   }],
   date: {
     type: Date,
