@@ -4,21 +4,22 @@ const {AdminDistWareController } = require('../../controller');
 const WarehouseModel = require('../../../model/warehouse.js')
 const ZoneModel =  require('../../../model/zone')
 const router = express.Router();
+const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../../new_auth/jwt_helper");
 
 router.get(
     '/create/:id',
-    adminToken,
+    verifyAccessToken,
     AdminDistWareController.createWarehouse
 )
 
 router.post(
   '/create',
-  adminToken,
+  verifyAccessToken,
   AdminDistWareController.createWarehousePost
 )
 
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifyAccessToken, async (req, res) => {
   const id = req.params.id;
 
   try {

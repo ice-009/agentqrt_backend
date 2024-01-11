@@ -8,17 +8,17 @@ const router = express.Router();
 
 router.get(
     '/create/:id',
-    adminToken,
+    verifyAccessToken,
     AdminDistWareController.createDistributor
 )
 
 router.post(
   '/create',
-  adminToken,
+  verifyAccessToken,
   AdminDistWareController.createDistributorPost
 )
 
-router.get('/:id', async (req, res) => {
+router.get('/:id',verifyAccessToken, async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/',verifyAccessToken, async (req, res) => {
   try{
     const distributors = await DistributorModel.find();
     res.status(200).json({ distributors });

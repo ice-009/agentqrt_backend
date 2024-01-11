@@ -1,13 +1,14 @@
 const express = require('express');
 const { authToken, adminToken } = require('../../../middleware/auth');
 const { AdminUserController } = require('../../controller');
+const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../../new_auth/jwt_helper");
 
 
 const router = express.Router();
 
 router.get(
   '/',
-  adminToken,
+  verifyAccessToken,
   AdminUserController.userhome
 )
 router.get(

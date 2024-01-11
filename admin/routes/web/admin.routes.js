@@ -12,22 +12,29 @@ router.get(
 )
 router.get(
   '/login',
+
   adminauthController.login
 )
 router.post(
   '/login',
+  
   adminauthController.loginpost
 )
 router.post(
   '/logout',
+  verifyAccessToken,
   adminauthController.logout
 )
+router.get('/test', verifyAccessToken, (req, res) => {
+  res.send(req.user);
+});
 router.get(
   '/create/admin',
   AdminUserController.createAdminGet
 )
 router.post( 
   '/create/admin',
+  verifyAccessToken,
   AdminUserController.createAdminPost
 )
 

@@ -25,7 +25,8 @@ const createAdminPost = catchAsync(async (req, res) => {
             role: "admin",
             // gender: gender
         })
-        res.redirect("./admin")
+        // res.redirect("./admin")
+        return res.status(200).json({ success: true, message: 'Admin created successfully' });
     } catch (error) {
         console.log(error.status + " " + error.message)
     }

@@ -3,17 +3,19 @@ const { adminToken } = require('../../../middleware/auth');
 const { AdminZoneController } = require('../../controller');
 const ZoneModel =  require('../../../model/zone')
 const router = express.Router();
+const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../../new_auth/jwt_helper");
+
 const {DistributorModel} = require('../../../model/distributor')
 const {Outlet} = require('../../../model/outlet')
 // router.get('/create',
 // //  adminToken,
 //  AdminZoneController.homeZone);
 
-router.post('/create', AdminZoneController.createZone);
+router.post('/create',  AdminZoneController.createZone);
 
 
 router.get(
-    '/',async (req,res)=>  {try {
+    '/',verifyAccessToken,async (req,res)=>  {try {
       const zones = await ZoneModel.find(); 
       res.json(zones); 
     } catch (error) {
@@ -21,7 +23,7 @@ router.get(
     }
   });
   
-  router.get('/:id', adminToken, async (req, res) => {
+  router.get('/:id', verifyAccessToken, async (req, res) => {
     try {
       const id = req.params.id;
   
