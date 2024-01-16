@@ -170,8 +170,9 @@ const createWarehouse = async(zoneid,body)=>{
     if (nullChecker(body.state))
         throw new ApiError(httpStatus.BAD_REQUEST, 'state required')
 
-    
-    const element = await ZoneModel.findOne({ zoneId: zoneid })
+        const objectId = mongoose.Types.ObjectId(zoneid);
+    const element = await ZoneModel.findById( objectId )
+    console.log("elemeny", element)
     const listwarehouse =element.warehouse
 
 
@@ -199,7 +200,7 @@ const createWarehouse = async(zoneid,body)=>{
         parentzoneid:body.zoneId
     })
 
-    const zone = await ZoneModel.findOne({ zoneId: zoneid});
+    const zone = await ZoneModel.findOne(objectId);
     if (zone) {
       zone.warehouse.push(warehouse._id);
       await zone.save();

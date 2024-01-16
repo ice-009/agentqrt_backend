@@ -82,7 +82,8 @@ console.log('pushed successfully')
 
 const createWarehousePost = catchAsync(async(req,res)=>{
      await DistWareService.createWarehouse(req.body.zoneId,req.body)
-     res.redirect("/admin/zone/"+req.body.zoneId)
+    //  res.redirect("/admin/zone/"+req.body.zoneId)
+    res.send("done");
 })
 
 
