@@ -20,7 +20,7 @@ const createAdminPost = catchAsync(async (req, res) => {
             // employeeId: id,
             // name: body.fullname,
             email: req.body.email,
-            // password: body.password,
+            password: body.password,
             username: req.body.username,
             role: "admin",
             // gender: gender

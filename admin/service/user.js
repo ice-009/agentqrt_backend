@@ -259,7 +259,7 @@ const create_alluser = async (body) => {
         // employeeId: id,
         // name: body.fullname,
         email: body.email,
-        // password: body.password,
+        password: body.password,
         username: body.username,
         role: body.role,
         // gender: gender

@@ -3,6 +3,7 @@ const DistWareService = require("../service/dis_ware")
 const {DistributorModel} = require("../../model/distributor")    
 const mongoose = require('mongoose')
 const ZoneModel = require("../../model/zone")
+const {AllUsers} = require("../../model/all_user") 
 
 const createDistributor = catchAsync(async(req,res)=>{
      res.render("admin/Distributor/create",{id:req.params.id})
@@ -13,65 +14,62 @@ const createWarehouse =  catchAsync(async(req,res)=>{
 })
 
 const createDistributor1 = async (req, res) => {
-     try {
-     const distributorId = await DistributorModel.find().sort({ "distributorId": -1 }).limit(1);
- 
-     let id;
-     if (distributorId.length === 0) {
-         id = 1;
-     } else {
-         id = distributorId[0].distributorId + 1;
-     }
- 
-     console.log('id',id);
- 
-     const { distributorname, email, password, username, contactnumber, address, gstno, country, pincode, state, contactperson, parentzoneid } = req.body;
-     const zoneId = mongoose.Types.ObjectId(parentzoneid);
-     
-      
-     console.log('zone',zoneId)
-     const distributor = new DistributorModel({
-         distributorId: id,
-         distributorname,
-         email,
-         password,
-         username,
-         contactnumber,
-         address,
-         gstno,
-         country,
-         pincode,
-         state,
-         contactperson,
-         parentzoneid: zoneId
-     });
- 
-      const savedDistributor = await distributor.save();
-      console.log('dist',savedDistributor)
-     const zz = await ZoneModel.findById(zoneId)
-     console.log('zz',zz)
-     // if (!mongoose.Types.ObjectId.isValid(zoneId) || !mongoose.Types.ObjectId.isValid(savedDistributor._id)) {
-     //      return res.status(400).json({ error: 'Invalid ObjectId' });
-     //  }
+    try {
+        // Get the latest distributorId
+        const distributorId = await DistributorModel.find().sort({ "distributorId": -1 }).limit(1);
 
-    // ... (your existing code)
+        // Calculate the new distributorId
+        const id = distributorId.length === 0 ? 1 : distributorId[0].distributorId + 1;
 
-    await ZoneModel.findByIdAndUpdate(
-        zoneId,
-        { $push: { distributor: mongoose.Types.ObjectId(savedDistributor._id) } },
-        { new: true }
-    );
-console.log('pushed successfully')
-    // ... (rest of your code)
+        // Destructure request body
+        const { distributorname, email, password, username, contactnumber, address, gstno, country, pincode, state, contactperson, parentzoneid } = req.body;
 
-} catch (error) {
-    console.error('Error updating ZoneModel:', error);
-    res.status(500).send('Internal Server Error');
-}
- 
-     // Sending a response to the client
-     res.redirect("/admin/zone/" + req.body.parentzoneid);
- };
+        // Convert parentzoneid to ObjectId
+        const zoneId = mongoose.Types.ObjectId(parentzoneid);
+
+        // Create a new Distributor instance
+        const distributor = new DistributorModel({
+            distributorId: id,
+            distributorname,
+            email,
+            password,
+            username,
+            contactnumber,
+            address,
+            gstno,
+            country,
+            pincode,
+            state,
+            contactperson,
+            parentzoneid: zoneId
+        });
+
+        // Save the distributor
+        const savedDistributor = await distributor.save();
+
+        // Update ZoneModel with the new distributor
+        await ZoneModel.findByIdAndUpdate(
+            zoneId,
+            { $push: { distributor: mongoose.Types.ObjectId(savedDistributor._id) } },
+            { new: true }
+        );
+
+        // Create a new AllUsers record for the distributor
+        await AllUsers.create({
+            email: email,
+            password: password,
+            username: username,
+            role: "distributor",
+        });
+
+        // Sending a response to the client
+        res.redirect("/admin/zone/" + parentzoneid);
+    } catch (error) {
+        console.error('Error creating distributor:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
  
  // Using catchAsync if necessary
  const createDistributorPost = catchAsync(createDistributor1);
