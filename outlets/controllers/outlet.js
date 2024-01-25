@@ -7,7 +7,11 @@ var validator = require("email-validator");
 
 const createOutlet = catchAsync(async (req, res) => {
     try{  const outlet = await outletService.createOutlet(req.body)
-          return sendToken(outlet,201,res)
+        //   return sendToken(outlet,201,res)
+        res.status(201).json({
+            success:true,
+            outlet
+        })
     }catch(errr){
           console.log(errr.status +errr.message )
     }

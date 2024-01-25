@@ -87,7 +87,7 @@ console.log(outletBody.distributor)
   { $push: { outlets: mongoose.Types.ObjectId(savedOut._id) } },
   { new: true }
 );
-return console.log(outletBody.distributor)
+return savedOut;
 }
 // console.log(outletBody.distrubutor)
 

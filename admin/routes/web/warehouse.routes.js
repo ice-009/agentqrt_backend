@@ -23,7 +23,7 @@ router.get('/:id', verifyAccessToken, async (req, res) => {
   const id = req.params.id;
 
   try {
-    const warehouses = await WarehouseModel.find({ parentzoneid: id });
+    const warehouses = await WarehouseModel.findById(id);
 
     res.status(200).json({ warehouses });
   } catch (error) {

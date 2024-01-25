@@ -63,7 +63,8 @@ const createDistributor1 = async (req, res) => {
         });
 
         // Sending a response to the client
-        res.redirect("/admin/zone/" + parentzoneid);
+        // res.redirect("/admin/zone/" + parentzoneid);
+        res.json({ savedDistributor })
     } catch (error) {
         console.error('Error creating distributor:', error);
         res.status(500).send('Internal Server Error');
