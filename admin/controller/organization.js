@@ -6,6 +6,7 @@ const home = catchAsync(async (req, res) => {
     
     //funtion to getall organization list
     const org = await adminOrganizationService.getAllOrgList()
+    console.log("first", org)
     res.render("admin/organization", { org: org })
     
 })
@@ -28,10 +29,21 @@ const createOrganizationPost = catchAsync(async(req,res)=>{
 
 const getOrgbyId = catchAsync(async(req,res)=>{
     const org =  await adminOrganizationService.getByOrgId(req.params.id)
+    console.log("org:" ,org)
     const listzone = await adminOrganizationService.getAllZoneIdAndName(req.params.id)
-    res.render('admin/organization/org',{org:org,listzone:listzone})
+    console.log("lis",listzone)
+    const listzone2 = await adminOrganizationService.getAllZoneIdAndName2(req.params.id)
+    console.log("lis",listzone2)
+    res.render('admin/organization/org',{org:org,listzone:listzone, listzone2:listzone2})
 
 })
+
+// const getOrgbyOrgId =  catchAsync(async(req,res)=>{
+//     const org = await adminOrganizationService.getOrgbyOrgId(req.params.id)
+
+// })
+
+
 
 
 const createZone = catchAsync(async(req,res)=>{

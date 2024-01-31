@@ -2,7 +2,7 @@ const httpStatus = require("http-status");
 const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
 const ApiError = require('../../AddtionalFolders/utils/ApiError');
 const { Organization, Zone } = require("../../model/");
-
+const ZoneModel = require("../../model/zone");
 
 const createOrg = async (body) => {
     
@@ -60,11 +60,13 @@ const createOrg = async (body) => {
 const getAllOrgList = async () => {
 
     const elem = await Organization.OrganizationModel.find()
+    console.log(elem)
     const org = [];
     console.log(elem)
     for (let index = 0; index < elem.length; index++) {
         const element = elem[index];
-        console.log(element)
+        console.log("ele",element)
+        
         org.push({
             orgId: element.orgId,
             orgname: element.orgname,
@@ -79,7 +81,8 @@ const getAllOrgList = async () => {
             pincode: element.pincode,
             yor: element.yor,
             state: element.state,
-            contactperson: element.contactperson
+            contactperson: element.contactperson,
+            listZone:element.listzone
         })
     }
     return org
@@ -90,6 +93,7 @@ const getByOrgId = async (id) => {
     const element = await Organization.OrganizationModel.findOne({ orgId: id })
 
     return {
+        // _id: element.id,
         orgId: element.orgId,
         orgname: element.orgname,
         email: element.email,
@@ -121,7 +125,7 @@ const createZone = async (body) => {
         throw new ApiError(httpStatus.BAD_REQUEST, 'zone name required')
     if (nullChecker(body.orgId))
         throw new ApiError(httpStatus.BAD_REQUEST, 'zone name required')
-    const zoneid = await Zone.ZoneModel.find().sort({ "zoneId": -1 }).limit(1);
+    const zoneid = await ZoneModel.find().sort({ "zoneId": -1 }).limit(1);
     var id;
     if (zoneid.length == 0) {
         id = 1;
@@ -130,7 +134,7 @@ const createZone = async (body) => {
     }
     const element = await Organization.OrganizationModel.findOne({ orgId: body.orgId })
     const listZone =element.listzone 
-    const zone = await Zone.ZoneModel.create({
+    const zone = await ZoneModel.create({
           zoneId:id,
           name:body.zonename,
           pincode:[body.pincode],
@@ -146,16 +150,42 @@ const createZone = async (body) => {
 
 const getAllZoneIdAndName = async(id)=>{
     const organization = await Organization.OrganizationModel.findOne({ orgId: id })
-    console.log(organization.listzone)
-    const listZone = [];
-    for (let index = 0; index < organization.listzone.length; index++) {
-        console.log(organization.listzone[index])
-        const element = organization.listzone[index];
-        const zone = await Zone.ZoneModel.findOne({zoneId:element})
-        listZone.push(zone)
-    }
-    return listZone
+    // console.log("organization.listzone", organization.listzone)
+    const stringifiedListZone = organization.listzone.map(id => id.toString());
+    // const listZone = [];
+    // for (let index = 0; index < organization.listzone.length; index++) {
+    //     console.log(organization.listzone[index])
+    //     const element = organization.listzone[index];
+    //     const zone = await ZoneModel.findOne({zoneId:element})
+    //     listZone.push(zone)
+    // }
+    // console.log("str", stringifiedListZone)
+    return stringifiedListZone;
 }
+
+const getAllZoneIdAndName2 = async (id) => {
+    const organization = await Organization.OrganizationModel.findOne({ orgId: id });
+
+    if (!organization) {
+        throw new Error('Organization not found');
+    }
+
+    // Convert ObjectIDs to strings
+    const stringifiedListZone = organization.listzone.map(id => id.toString());
+
+    // Use Promise.all to parallelize the asynchronous operations
+    const zonePromises = stringifiedListZone.map(async (element) => {
+        const zone = await ZoneModel.findById(element);
+        return zone || null; // Return null if zone is not found
+    });
+
+    const listZone = await Promise.all(zonePromises);
+    console.log("first", listZone)
+    return listZone;
+};
+
+
+
 
 module.exports = {
     createOrg,
@@ -163,5 +193,6 @@ module.exports = {
     getByOrgId,
     createZone,
     getByOrgIdname,
-    getAllZoneIdAndName
+    getAllZoneIdAndName,
+    getAllZoneIdAndName2
 }

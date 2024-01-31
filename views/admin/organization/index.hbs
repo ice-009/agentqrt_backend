@@ -135,7 +135,7 @@
          <div class="noclass mt-4 pt-2">
             <a href="./create" class="btn btn-outline-secondary mb-3">Create Organization</a>
             {{#each org}}    
-               <a href="/admin/organization/{{this.orgId}}"  style="margin-top: 5px;" class="collapsiblel btn btn-outline-primary">{{this.orgname}}</a>
+               <a href="/api/v1/admin/organization/{{this.orgId}}"  style="margin-top: 5px;" class="collapsiblel btn btn-outline-primary">{{this.orgname}}</a>
             {{/each}}
          </div>
          

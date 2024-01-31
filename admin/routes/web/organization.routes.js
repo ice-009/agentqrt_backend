@@ -23,10 +23,16 @@ router.post(
 )
 router.get(
   '/:id',
-  adminToken,
+  verifyAccessToken,
   AdminOrganizationController.getOrgbyId
 )
 
+
+// router.get(
+//   '/:orgid',
+//   adminToken,
+//   AdminOrganizationController.getOrgbyOrgId
+// )
 router.get(
   '/zone/create/:id',
   adminToken,
