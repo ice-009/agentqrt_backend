@@ -73,45 +73,48 @@
             <div class="col-9">
                 <!-- Main Content -->
                 <!-- Main Content -->
-<div class="p-2 bordered">
-    <h1>Distributors</h1>
+                <div class="p-2 bordered">
+                    <h1>Distributors</h1>
 
-    {{#each distributorData}}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title distributor-name" data-toggle="collapse" data-target="#details{{this.distributor._id}}">
-                    {{this.distributor.username}}
-                </h5>
-                <div class="collapse" id="details{{this.distributor._id}}">
-                    <p><strong>Email:</strong> {{this.distributor.email}}</p>
-                    <p><strong>Contact Number:</strong> {{this.distributor.contactnumber}}</p>
-                    <!-- Add more distributor details as needed -->
+                    {{#each distributorData}}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title distributor-name" data-toggle="collapse"
+                                data-target="#details{{this.distributor._id}}">
+                                {{this.distributor.username}}
+                            </h5>
+                            <div class="collapse" id="details{{this.distributor._id}}">
+                                <p><strong>Email:</strong> {{this.distributor.email}}</p>
+                                <p><strong>Contact Number:</strong> {{this.distributor.contactnumber}}</p>
+                                <!-- Add more distributor details as needed -->
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Outlet Name</th>
-                                <th>Contact Number</th>
-                                <th>Address</th>
-                                <!-- Add more columns as needed -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each this.outlets}}
-                                <tr>
-                                    <td>{{this.outletId}}</td>
-                                    <td>{{this.name}}</td>
-                                    <td>{{this.address}}</td>
-                                    <!--email Add more columns as needed -->
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Outlet Id</th>
+                                            <th>Contact Name</th>
+                                            <th>Address</th>
+
+                                            <!-- Add more columns as needed -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each this.outlets}}
+                                        <tr>
+                                            <td>{{this.outletId}}</td>
+                                            <td><a href="/api/v1/admin/outlet/{{this.outletId}}">{{this.name}}</a></td>
+                                            <td>{{this.address}}</td>
+                                            <!-- Add more columns as needed -->
+                                        </tr>
+                                        {{/each}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
-            </div>
-        </div>
-    {{/each}}
-</div>
 
             </div>
         </div>

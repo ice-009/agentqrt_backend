@@ -35,25 +35,29 @@ router.get(
   
       // Find distributors for the specified zone
       const distributors = await DistributorModel.find({ parentzoneid: id }).exec();
-  
+      
       // Iterate through distributors and retrieve outlet information
       const distributorData = [];
+      const outletData = [];
       for (const distributor of distributors) {
         const outletIds = distributor.outlets; // Assuming outlets is an array of outlet IDs
   
         // Find outlet information using outlet IDs
         const outlets = await Outlet.find({ _id: { $in: outletIds } }).exec();
-  
+        // console.log("out", outlets)
         // Push data to distributorData array
+        outletData.push(outlets);
+
         distributorData.push({
           distributor: distributor,
           outlets: outlets,
         });
       }
   
-      console.log('Distributor Data:', distributorData);
-      console.log(distributorData.outlets)
-      res.render('admin/Distributor/distributor', { id, distributorData });
+      // console.log('Distributor Data:', distributorData);
+      // console.log("hehe", distributorData.outlets)
+      console.log("outletData", outletData)
+      res.render('admin/Distributor/distributor', { id, distributorData, outletData });
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
