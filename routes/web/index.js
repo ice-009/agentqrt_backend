@@ -5,9 +5,11 @@ const adminOrganizationRoute = require('../../admin/routes/web/organization.rout
 const adminZoneRoute = require("../../admin/routes/web/zone.routes")
 const adminDistributorRoute = require("../../admin/routes/web/distributor.routes")
 const adminWarehouseRoute = require("../../admin/routes/web/warehouse.routes")
+const adminOutletRoute = require("../../admin/routes/web/outlet.routes")
 const distributorRoute = require('../../distributor/routes/web/auth.routes')
 const organizationRoute = require("../../organization/routes/web/auth.routes")
 const employeeRoute = require("../../users/routes/web/index.routes")
+
 
 
 const defaultRoutes = [
@@ -34,6 +36,10 @@ const defaultRoutes = [
     {
       path:"/admin/warehouse",
       route:adminWarehouseRoute
+    },
+    {
+      path:"/admin/outlet",
+      route:adminOutletRoute
     },
     {
       path:"/distributor",
