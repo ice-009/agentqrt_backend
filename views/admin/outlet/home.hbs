@@ -55,7 +55,10 @@
         .card {
             margin-bottom: 20px;
         }
-
+        .table-row {
+            cursor: pointer;
+            padding-left: 10px;
+        }
         .card-body {
             background-color: #fff;
             border: 1px solid rgba(0, 0, 0, 0.125);
@@ -135,6 +138,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
+
       <li class="nav-item">
         <a class="nav-link" href="#">Manage Target</a>
       </li>
@@ -161,27 +165,127 @@
   
 </nav>
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
 
-    </tr>
-  </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+    <tr class="table-row">
+      
+      <td>Id</td>
+      <td>{{outlet.outletId}}</td>
       
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-
+    <tr class="table-row">
+      
+      <td>BEAT</td>
+      
+      <td>{{#each outlet.beat}}{{this}}, {{/each}}</td>
+      
+      
     </tr>
+    <tr class="table-row">
+      
+      <td>Address</td>
+      <td>{{outlet.address}}</td>
+      
+    </tr>
+   <tr class="table-row">
+    <td>Location</td>
+    <td>
+        <!-- Display location symbol (e.g., a pin) -->
+        <span style="cursor: pointer;" onclick="showLocationOnMap({{outlet.latitude}}, {{outlet.longitude}})">📍</span>
+    </td>
+</tr>
+
+    <tr class="table-row">
+      
+      <td>PIN</td>
+      <td>{{outlet.pincode}}</td>
+      
+    </tr>
+
+    <tr class="table-row">
+      
+      <td>Phone No.</td>
+      <td>{{outlet.phoneno}}</td>
+      
+    </tr>
+  
+  <tr class="table-row">
+      
+      <td>Outlet Category</td>
+      <td>{{outlet.outlettype}}</td>
+      
+    </tr>
+  <tr class="table-row">
+      
+      <td>Outlet Type</td>
+      <td>{{outlet.outlettype}}</td>
+      
+    </tr>
+  <tr class="table-row">
+      
+      <td>Outlet State</td>
+      <td>{{outlet.state}}</td>
+      
+    </tr>
+  <tr class="table-row">
+      
+      <td>Outlet Level</td>
+      <td>{{outlet.outletlevel}}</td>
+      
+    </tr>
+    
+  </tbody>
+</table>
+<div class="dist" style="font-size: 35px;">
+  For Distributor
+</div>
+<table class="table">
+
+  <tbody>
+    <tr class="table-row">
+      
+      <td>Id</td>
+      <td>{{outlet.outletId}}</td>
+      
+    </tr>
+    <tr class="table-row">
+      
+      <td>BEAT</td>
+      
+      <td>{{#each outlet.beat}}{{this}}, {{/each}}</td>
+      
+      
+    </tr>
+    <tr class="table-row">
+      
+      <td>Address</td>
+      <td>{{outlet.address}}</td>
+      
+    </tr>
+   
+
+    <tr class="table-row">
+      
+      <td>PIN</td>
+      <td>{{outlet.pincode}}</td>
+      
+    </tr>
+
+    <tr class="table-row">
+      
+      <td>Phone No.</td>
+      <td>{{outlet.phoneno}}</td>
+      
+    </tr>
+  
+  <tr class="table-row">
+      
+      <td>Outlet Category</td>
+      <td>{{outlet.outlettype}}</td>
+      
+    </tr>
+  
+    
   </tbody>
 </table>
         </div>
@@ -192,7 +296,11 @@
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
+    <script>function showLocationOnMap(lat, lng) {
+        // Open Google Maps with the specified latitude and longitude
+        window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
+    }
+</script>
 </body>
 
 </html>
