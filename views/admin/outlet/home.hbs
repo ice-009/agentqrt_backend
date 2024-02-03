@@ -116,7 +116,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Activites Report</a>
-      </li>
+      </li><div class="dist" style="font-size: 35px;">
+
+</div>
       <li class="nav-item">
         <a class="nav-link" href="#">Update Discount</a>
       </li>
@@ -236,7 +238,58 @@
     
   </tbody>
 </table>
+<div class="dist" style="font-size: 35px;">
+  For Distributor
+</div>
+<table class="table">
 
+  <tbody>
+    <tr class="table-row">
+      
+      <td>Id</td>
+      <td>{{outlet.outletId}}</td>
+      
+    </tr>
+    <tr class="table-row">
+      
+      <td>BEAT</td>
+      
+      <td>{{#each outlet.beat}}{{this}}, {{/each}}</td>
+      
+      
+    </tr>
+    <tr class="table-row">
+      
+      <td>Address</td>
+      <td>{{outlet.address}}</td>
+      
+    </tr>
+   
+
+    <tr class="table-row">
+      
+      <td>PIN</td>
+      <td>{{outlet.pincode}}</td>
+      
+    </tr>
+
+    <tr class="table-row">
+      
+      <td>Phone No.</td>
+      <td>{{outlet.phoneno}}</td>
+      
+    </tr>
+  
+  <tr class="table-row">
+      
+      <td>Outlet Category</td>
+      <td>{{outlet.outlettype}}</td>
+      
+    </tr>
+  
+    
+  </tbody>
+</table>
         </div>
         
     </div>

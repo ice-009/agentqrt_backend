@@ -37,7 +37,7 @@ const orderSchema = mongoose.Schema({
     default: Date.now(),
   },
   outletId: {
-    type: String,
+    type: Number,
     required: true
   }
 });
