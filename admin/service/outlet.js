@@ -3,6 +3,7 @@ const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
 const ApiError = require('../../AddtionalFolders/utils/ApiError');
 
 const { Outlet } = require("../../model/outlet");
+const Order  =  require("../../model/order")
 
 const getOutletPage = async function(id){
     try{
@@ -14,6 +15,18 @@ const getOutletPage = async function(id){
     }
 }
 
+const orderReportService = async function(id){
+    try{
+        // const outlet = await Outlet.findOne({outletId:id});
+        const order =  await Order.find({outletId:id});
+        return order;
+    }
+    catch(error){
+        throw new ApiError(httpStatus.NOT_FOUND, 'Order not found');
+    }
+}
+
 module.exports = {
-    getOutletPage
+    getOutletPage,
+    orderReportService
 }

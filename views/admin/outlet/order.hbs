@@ -17,67 +17,83 @@
 
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-        }
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+}
 
-        .container-fluid {
-            display: flex;
-        }
+.container-fluid {
+    display: flex;
+}
 
-        .sidebar {
-            width: 20%;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
+.sidebar {
+    width: 20%;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
 
-        .main-content {
-            width: 80%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+.main-content {
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-        .navbar {
-            width: 100%;
-            background-color: #f8f9fa;
-            margin-bottom: 20px;
-        }
+.navbar {
+    width: 100%;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+}
 
-        .table {
-            width: 100%;
-        }
+.navbar-nav .nav-link {
+    padding: 10px 15px;
+    color: #495057; /* Adjust the color to your preference */
+}
 
-        .content {
-            display: inline;
-        }
+.navbar-nav .nav-link:hover {
+    background-color: #e9ecef; /* Adjust the color to your preference */
+}
 
-        .card {
-            margin-bottom: 20px;
-        }
-        .table-row {
-            cursor: pointer;
-            padding-left: 10px;
-        }
-        .card-body {
-            background-color: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.125);
-            border-radius: 0.25rem;
-            padding: 20px;
-        }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
 
-        .distributor-name {
-            cursor: pointer;
-            color: #007bff;
-        }
+.table-row {
+    background-color: #f8f9fa; /* Adjust the color to your preference */
+}
 
-        .collapse.show {
-            display: block;
-        }
+.table td {
+    padding: 10px;
+}
 
-        .collapse {
-            display: none;
-        }
+.card {
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 20px;
+}
+
+.distributor-name {
+    cursor: pointer;
+    color: #007bff;
+}
+
+.collapse.show {
+    display: block;
+}
+
+.collapse {
+    display: none;
+}
+
     </style>
 
 </head>
@@ -236,7 +252,58 @@
     
   </tbody>
 </table>
+<div class="dist" style="font-size: 35px;">
+  For Distributor
+</div>
+<table class="table">
 
+  <tbody>
+    <tr class="table-row">
+      
+      <td>Id</td>
+      <td>{{outlet.outletId}}</td>
+      
+    </tr>
+    <tr class="table-row">
+      
+      <td>BEAT</td>
+      
+      <td>{{#each outlet.beat}}{{this}}, {{/each}}</td>
+      
+      
+    </tr>
+    <tr class="table-row">
+      
+      <td>Address</td>
+      <td>{{outlet.address}}</td>
+      
+    </tr>
+   
+
+    <tr class="table-row">
+      
+      <td>PIN</td>
+      <td>{{outlet.pincode}}</td>
+      
+    </tr>
+
+    <tr class="table-row">
+      
+      <td>Phone No.</td>
+      <td>{{outlet.phoneno}}</td>
+      
+    </tr>
+  
+  <tr class="table-row">
+      
+      <td>Outlet Category</td>
+      <td>{{outlet.outlettype}}</td>
+      
+    </tr>
+  
+    
+  </tbody>
+</table>
         </div>
         
     </div>
