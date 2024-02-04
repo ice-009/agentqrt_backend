@@ -7,9 +7,9 @@ const getOutletPageContr = async function(req,res){
 }
 
 const getOrderReportContr = async function(req,res){
-    const order = await orderReportService(req.params.id);
-    console.log(order)
-    res.render('admin/outlet/order',{order})
+    const orders = await orderReportService(req.params.id);
+    console.log(orders)
+    res.render('admin/outlet/order',{orders})
     // res.send(order);
 
 }

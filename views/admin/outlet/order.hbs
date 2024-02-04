@@ -181,34 +181,122 @@
   
 </nav>
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">OrderId</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Products</th>
+            <th scope="col">  </th>
+             <th scope="col">  </th>
+             <th scope="col">  </th>
+             
+
+
+        </tr>
+    <tbody>
+        {{#each orders}}
+        <tr>
+            <th scope="row">{{this.orderId}}</th>
+            <td>{{this.userId}}</td>
+            <td>{{this.date}}</td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                    {{#each this.productId as |productId index|}}
+                                    <tr>
+                                        <td>{{productId}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    
+                                    
+                                </tbody>
+                    <tbody>
+                      
+                    </tbody>
+                </table>
+                
+                
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                    {{#each this.productId as |productId index|}}
+                                    <tr>
+                                        <td>{{productId}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    
+                                    
+                                </tbody>
+                    <tbody>
+                      
+                    </tbody>
+                </table>
+                
+                
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                    {{#each this.productId as |productId index|}}
+                                    <tr>
+                                        <td>{{productId}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    
+                                    
+                                </tbody>
+                    <tbody>
+                      
+                    </tbody>
+                </table>
+                
+                
+            </td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                    {{#each this.productId as |productId index|}}
+                                    <tr>
+                                        <td>{{productId}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    
+                                    
+                                </tbody>
+                    <tbody>
+                      
+                    </tbody>
+                </table>
+                
+                
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
 </table>
+
 
         </div>
         

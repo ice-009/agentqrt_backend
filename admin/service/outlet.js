@@ -19,6 +19,7 @@ const orderReportService = async function(id){
     try{
         // const outlet = await Outlet.findOne({outletId:id});
         const order =  await Order.find({outletId:id});
+        // console.log("order",order);
         return order;
     }
     catch(error){

@@ -13,8 +13,11 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const process = require('process')
-
-const app = express()
+const Handlebars = require('handlebars');
+const app = express();
+Handlebars.registerHelper('get', function(array, index) {
+  return array[index];
+});
 app.use(cookieParser());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
