@@ -4,6 +4,8 @@ const ApiError = require('../../AddtionalFolders/utils/ApiError');
 
 const { Outlet } = require("../../model/outlet");
 const Order  =  require("../../model/order")
+const Target = require("../../model/target");
+
 
 const getOutletPage = async function(id){
     try{
@@ -27,7 +29,23 @@ const orderReportService = async function(id){
     }
 }
 
+const createTarget = async function(body, id){
+    try{
+        return await Target.create({
+            TargetPeriod: body.TargetPeriod,
+            CollectionAmount: body.CollectionAmount,
+            StartDate: body.StartDate,
+            OutletId: id,
+        });
+    }
+    catch(error){
+        throw new ApiError(httpStatus.BAD_REQUEST, error.message);
+    }
+}
+        
+
 module.exports = {
     getOutletPage,
-    orderReportService
+    orderReportService,
+    createTarget
 }

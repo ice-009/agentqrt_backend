@@ -20,7 +20,7 @@
     font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
     margin: 0;
-}
+}s
 
 .container-fluid {
     display: flex;
@@ -130,7 +130,7 @@ th {
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/api/v1/admin/outlet/{{id}}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/api/v1/admin/outlet/{{order.outletId}}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Order Report</a>
@@ -145,7 +145,7 @@ th {
         <a class="nav-link" href="#">Collection Report</a>
       </li>Update Discount
       <li class="nav-item">
-        <a class="nav-link" href="/api/v1/admin/outlet/target/{{id}}">New Target</a>
+        <a class="nav-link" href="#">New Target</a>
       </li>
       
     </ul>
@@ -185,105 +185,7 @@ th {
   </div>
   
 </nav>
-<table class="table">
-    <thead>
-        <tr class = "main-table">
-            <th scope="col" style="background-color: #b0b7be;">Order ID</th>
-            <th scope="col" style="background-color: #b0b7be;">User ID</th>
-            <th scope="col"style="background-color: #b0b7be;">Date</th>
-            <th scope="col"style="background-color: #b0b7be;">Products</th>
-            <th scope="col"style="background-color: #b0b7be;">  </th>
-             <th scope="col"style="background-color: #b0b7be;">  </th>
-             <th scope="col"style="background-color: #b0b7be;">  </th>
-            <th scope="col"style="background-color: #b0b7be;"> Amount</th>
-             
 
-
-        </tr>
-    <tbody>
-        {{#each orders}}
-        <tr>
-            <th scope="row">{{this.orderId}}</th>
-            <td>{{this.userId}}</td>
-            <td>{{this.date}}</td>
-            <td>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Product ID</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                                    {{#each this.productId as |productId index|}}
-                                    <tr>
-                                        <td>{{productId}}</td>
-                                    </tr>
-                                    {{/each}}
-                                    
-                                    
-                                </tbody>
-                    <tbody>
-                      
-                    </tbody>
-                </table>
-                
-                
-            </td>
-            <td>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="padding-bottom: 22px;">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                                    {{#each this.quantity as |quantity index|}}
-                                    <tr>
-                                        <td>{{quantity}}</td>
-                                    </tr>
-                                    {{/each}}
-                                    
-                                    
-                                </tbody>
-                    <tbody>
-                      
-                    </tbody>
-                </table>
-                
-                
-            </td>
-            <td>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Piece/ Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                                    {{#each this.pieceprice as |pieceprice index|}}
-                                    <tr>
-                                        <td>{{pieceprice}}</td>
-                                    </tr>
-                                    {{/each}}
-                                    
-                                    
-                                </tbody>
-                    <tbody>
-                      
-                    </tbody>
-                </table>
-                
-                
-            </td>
-            <td>
-
-                
-                <td>{{this.amount}}</td>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
 
 
         </div>
