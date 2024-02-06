@@ -93,7 +93,12 @@
 .collapse {
     display: none;
 }
-
+th {
+    background-color: #b0b7be;
+}
+.main-table {
+    background-color: #b0b7be;
+}
     </style>
 
 </head>
@@ -182,14 +187,15 @@
 </nav>
 <table class="table">
     <thead>
-        <tr>
-            <th scope="col">Order ID</th>
-            <th scope="col">User ID</th>
-            <th scope="col">Date</th>
-            <th scope="col">Products</th>
-            <th scope="col">  </th>
-             <th scope="col">  </th>
-             <th scope="col">  </th>
+        <tr class = "main-table">
+            <th scope="col" style="background-color: #b0b7be;">Order ID</th>
+            <th scope="col" style="background-color: #b0b7be;">User ID</th>
+            <th scope="col"style="background-color: #b0b7be;">Date</th>
+            <th scope="col"style="background-color: #b0b7be;">Products</th>
+            <th scope="col"style="background-color: #b0b7be;">  </th>
+             <th scope="col"style="background-color: #b0b7be;">  </th>
+             <th scope="col"style="background-color: #b0b7be;">  </th>
+            <th scope="col"style="background-color: #b0b7be;"> Amount</th>
              
 
 
@@ -227,13 +233,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Prodcut Price</th>
+                            <th style="padding-bottom: 22px;">Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
-                                    {{#each this.productId as |productId index|}}
+                                    {{#each this.quantity as |quantity index|}}
                                     <tr>
-                                        <td>{{productId}}</td>
+                                        <td>{{quantity}}</td>
                                     </tr>
                                     {{/each}}
                                     
@@ -250,13 +256,13 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Product ID</th>
+                            <th>Piece/ Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                                    {{#each this.productId as |productId index|}}
+                                    {{#each this.pieceprice as |pieceprice index|}}
                                     <tr>
-                                        <td>{{productId}}</td>
+                                        <td>{{pieceprice}}</td>
                                     </tr>
                                     {{/each}}
                                     
@@ -270,27 +276,9 @@
                 
             </td>
             <td>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Product ID</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                                    {{#each this.productId as |productId index|}}
-                                    <tr>
-                                        <td>{{productId}}</td>
-                                    </tr>
-                                    {{/each}}
-                                    
-                                    
-                                </tbody>
-                    <tbody>
-                      
-                    </tbody>
-                </table>
+
                 
-                
+                <td>{{this.amount}}</td>
             </td>
         </tr>
         {{/each}}

@@ -28,6 +28,9 @@ const orderSchema = mongoose.Schema({
   pieceprice: [{
     type: Number,
   }],
+  pieceAmount: [{
+    type: Number,
+  }],
   amount: [{
     type: Number,
     required: true
