@@ -5,6 +5,7 @@ const employeeRoute = require('../../users/routes/api/employee.routes')
 const reportRoute = require('../../admin/routes/api/report.routes')
 const beatRoute = require('../../special_feautres/beat/routes/beat')
 const targetRoute = require('../../special_feautres/target/routes/target.routes')
+const productRoute = require('../../special_feautres/products/routes/index')
 
 const defaultRoutes = [
     {
@@ -32,6 +33,10 @@ const defaultRoutes = [
     {
       path:'/target',
       route:targetRoute
+    },
+    {
+        path: '/product',
+        route:productRoute
     }
 
   ];
