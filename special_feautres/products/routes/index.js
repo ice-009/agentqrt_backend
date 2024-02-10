@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const createProductController = require('../controllers/index')
+const {createProductController} = require('../controllers/index')
 
-router.get('/hello', (req,res)=>{
+router.get('/hello', function(req,res){
     res.send('hello');
 })
-router.get('/create', createProductController);
+router.post('/create', createProductController);
 
 module.exports = router;

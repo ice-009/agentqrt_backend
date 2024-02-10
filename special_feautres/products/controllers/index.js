@@ -1,4 +1,4 @@
-const createProduct = require('../services/index')
+const {createProduct} = require('../services/index')
 
 const createProductController = async(req,res)=>{
     try{
@@ -10,7 +10,8 @@ const createProductController = async(req,res)=>{
         })
     }
     catch(err){
-        throw new Error(err)
+        // throw new Error(err)
+        console.log(err)
     }
 }
 

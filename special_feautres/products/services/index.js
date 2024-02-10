@@ -1,6 +1,6 @@
 const Product = require('../../../model/products')
 
-const createProduct = async function (req, res) {
+const createProduct = async function (productBody) {
     try {
         const orderid = await Product.find().sort({ "productId": -1 }).limit(1);
         var id;
@@ -9,16 +9,20 @@ const createProduct = async function (req, res) {
         } else {
             id = orderid[0].orderId + 1;
         }
-        
-        const product = new Product(req.body);
-        await product.save();
-        res.status(201).json(product);
+
+        return Product.create({
+            productId: id,
+            name: productBody.name,
+            price: productBody.price,
+            category: productBody.category
+          });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        // res.status(500).json({ error: error.message });
+        console.log(error)
     }
 }
 
-module.exports ={
+module.exports = {
     createProduct
 }
 
