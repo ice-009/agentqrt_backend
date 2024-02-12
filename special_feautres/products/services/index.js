@@ -22,7 +22,27 @@ const createProduct = async function (productBody) {
     }
 }
 
+const getProductbyId = async function (productId) {
+    try {
+        return Product.findOne({productId: productId});
+    }
+    catch (error) {
+        console.log(error)
+    } 
+}
+
+const getAllProducts = async function () {
+    try {
+        return Product.find();
+    }
+    catch (error) {
+        console.log(error)
+    } 
+}
+
 module.exports = {
-    createProduct
+    createProduct,
+    getProductbyId,
+    getAllProducts
 }
 
