@@ -47,7 +47,6 @@ const createOrder = async (employee, orderBody) => {
     quantity: orderBody.quantity,
     pieceprice: orderBody.pieceprice,
     pieceAmount: pieceAmount,
-    amount: amount,
     outletId: orderBody.outletId
   });
 }

@@ -14,7 +14,9 @@ const createProduct = async function (productBody) {
             productId: id,
             name: productBody.name,
             price: productBody.price,
-            category: productBody.category
+            category: productBody.category,
+            unit: productBody.unit,
+            cases: productBody.cases,
           });
     } catch (error) {
         // res.status(500).json({ error: error.message });
