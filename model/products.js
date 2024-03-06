@@ -19,11 +19,11 @@ const productSchema = new mongoose.Schema({
     },
     unit: {
         type: Number,
-        required: true
+        // required: true
     },
     cases: {
         type: Number,
-        required: true
+        // required: true
     },
     createdAt: {
         type: Date,
