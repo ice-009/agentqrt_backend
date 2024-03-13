@@ -65,6 +65,10 @@ const getAllAdminList = async () => {
     return admin;
 }
 
+const getAllUserList = async () => {
+    const user = await AllUsers.find();
+    return user;
+}
 
 const createEmployee = async (body) => {
     try{
@@ -274,7 +278,8 @@ module.exports = {
     createAdmin,
     getAllAdminList,
     createEmployee,
-    create_alluser
+    create_alluser,
+    getAllUserList
 }
 
 
