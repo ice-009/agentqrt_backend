@@ -144,7 +144,7 @@
                     </thead>
                     <tbody>
                         <% org.forEach(org => { %>
-                        <tr onclick="window.location.href='/api/v1/organizations/<%= org.orgId %>'" style="cursor: pointer;">
+                        <tr style="cursor: pointer;" class="org-row">
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div class="d-flex flex-column justify-content-center">
@@ -167,8 +167,24 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr class="zone-row" style="display: none;">
+                            <td colspan="3">
+                                <div class="list-zone" style="margin-top: 5px;">
+                                        <ul style="list-style-type: none; padding-left: 0;">
+                                            
+                                        <% org.listZone.forEach(zone => { %>
+                                            <a href="/api/v1/admin/zone/<% zone %>">
+                                            <li style="padding: 5px 0; border-bottom: 1px solid #ccc; text-align: center;"><%= zone %></li>
+                                        <% }); %>
+                                    </a>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
                         <% }); %>
                     </tbody>
+                    
+                    
                 </table>
                 
               </div>
@@ -255,6 +271,7 @@
   <script src="/../assets/js/core/bootstrap.min.js"></script>
   <script src="/../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="/../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -268,6 +285,21 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const orgRows = document.querySelectorAll(".org-row");
+
+        orgRows.forEach(row => {
+            row.addEventListener("click", function() {
+                const nextRow = this.nextElementSibling;
+                if (nextRow.classList.contains("zone-row")) {
+                    nextRow.style.display = nextRow.style.display === "none" ? "table-row" : "none";
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>
