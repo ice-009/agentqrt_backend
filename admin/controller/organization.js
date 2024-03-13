@@ -7,7 +7,7 @@ const home = catchAsync(async (req, res) => {
     //funtion to getall organization list
     const org = await adminOrganizationService.getAllOrgList()
     console.log("first", org)
-    res.render("admin/organization", { org: org })
+    res.render("pages/org_dash", { org: org })
     
 })
 
