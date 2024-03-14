@@ -57,7 +57,7 @@ router.get(
       // console.log('Distributor Data:', distributorData);
       // console.log("hehe", distributorData.outlets)
       console.log("outletData", outletData)
-      res.render('admin/Distributor/distributor', { id, distributorData, outletData });
+      res.render('pages/zone_dist_dash', { id, distributorData, outletData });
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
