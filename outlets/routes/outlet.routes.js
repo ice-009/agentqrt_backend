@@ -4,7 +4,7 @@ const express = require('express');
 const { outletController } = require('../../controller');
 const { authToken } = require('../../middleware/auth');
 const { Outlet } = require('../../model/outlet');
-
+const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken} = require("../../new_auth/jwt_helper");
 const router = express.Router();
 
 router.get('/', (req, res)=>{
@@ -33,6 +33,11 @@ router.post(
   outletController.deleteOutlet
 )
 
+router.post(
+    '/activity',
+    verifyAccessToken,
+    outletController.createActivity
+    )
 router.get('/:id', (req,res)=>{
   // const id = req.params.id;
   const distributorId = req.params.id;

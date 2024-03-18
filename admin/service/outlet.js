@@ -43,9 +43,22 @@ const createTarget = async function (body, id) {
     }
 }
 
+const getActivityService = async function (id) {
+    try {
+        const outlet = await Outlet.findById(id);
+        const activity = await Activity.find({ outletId: id });
+        return activity;
+    }
+    catch (error) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'Activity not found');
+    }
+}
+
+
 
 module.exports = {
     getOutletPage,
     orderReportService,
-    createTarget
+    createTarget,
+    getActivityService
 }

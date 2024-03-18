@@ -1,8 +1,8 @@
-const { Target } = require('../../../model/target');
+const { TargetModel } = require('../../../model/target');
 
 const createtarget = async (body) => {
     try {
-        return await Target.create({
+        return await TargetModel.create({
             TargetPeriod: body.TargetPeriod,
             CollectionAmount: body.CollectionAmount,
             StartDate: body.StartDate,

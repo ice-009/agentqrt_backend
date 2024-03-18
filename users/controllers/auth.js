@@ -11,7 +11,7 @@ const {EmployeeModel} =  require('../../model/employee')
 const {signAccessToken, signRefreshToken, verifyRefreshToken} = require('../../new_auth/jwt_helper');
 
 const login = catchAsync(async (req,res)=>{
-    res.render('user/login.hbs')
+    res.render('pages/login_empl.ejs')
 })
 const loginpost = catchAsync(async (req, res) => {
     const { username, password } = req.body;
