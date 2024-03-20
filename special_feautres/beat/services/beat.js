@@ -3,6 +3,19 @@ const nullChecker = require('../../../AddtionalFolders/helper/nullChecker')
 const httpStatus = require('http-status')
 const {Beat} = require('../../../model/beat')
 
+const getBeat = async (id) => {
+    try {
+        const beat = await Beat.findById(id);
+        if (!beat) {
+            throw new ApiError(httpStatus.NOT_FOUND, "Beat not found");
+        }
+        return beat;
+    } catch (error) {
+        console.error('Error getting beat:', error.message);
+        // throw new ApiError(500, "Internal Server Error");
+    }
+}
+
 const createBeat = async (body) => {
 
     try {
@@ -49,5 +62,6 @@ const editBeat = async(id,body)=>{
 
 module.exports = {
      createBeat,
-     deleteBeat
+     deleteBeat,
+     getBeat
 }

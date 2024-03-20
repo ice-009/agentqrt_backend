@@ -1,6 +1,23 @@
 // const catchAsyn = require('../../../AddtionalFolders/utils/catchAsync')
 const Beat = require('../../../model/beat')
 const beatCont = require('../services/beat')
+const getBeatContr = async(req,res) => {
+    try {
+        const beat = await beatCont.getBeat(req.params.beatId)
+        res.status(200).json({
+        status: 'success',
+        data: {
+            beat
+        }
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({
+        status: 'fail'
+        })
+        // return err;
+    }
+    }
 const createBeatContr =  async(req,res) => {
     try {
         const beat = await beatCont.createBeat(req.body)
@@ -41,5 +58,6 @@ const deleteBeatContr = async(req,res) => {
 
 module.exports = {
     createBeatContr,
-    deleteBeatContr
+    deleteBeatContr,
+    getBeatContr
 }

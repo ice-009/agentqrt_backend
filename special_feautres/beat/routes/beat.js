@@ -6,7 +6,7 @@ const {signAccessToken, signRefreshToken, verifyRefreshToken, verifyAccessToken}
 router.get('/test', verifyAccessToken, (req, res) => {
     res.json('hello');  // working fine
     });
-
+router.get('/get/:beatId', verifyAccessToken, beatController.getBeatContr);
 router.post('/create', verifyAccessToken, beatController.createBeatContr);
 router.delete('/delete/:beatId', verifyAccessToken, beatController.deleteBeatContr);
 module.exports = router;
