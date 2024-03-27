@@ -1,4 +1,4 @@
-const { getOutletPage, orderReportService, createTarget } = require('../service/outlet');
+const { getOutletPage, orderReportService, createTarget, getActivityService } = require('../service/outlet');
 // const {Employee} = require('../../model/')
 
 const getOutletPageContr = async function (req, res) {
@@ -34,9 +34,19 @@ const createTargetContr = async function (req, res) {
     res.redirect('/admin/outlet/' + req.params.id);
 };
 
+const getActiReportContr = async function (req, res) {
+    const activities = await getActivityService(req.params.id);
+    console.log(activities);
+    const id = req.params.id;
+    console.log(activities, id)
+
+    res.render('pages/outlet_acti_dash.ejs', {activities, id})
+}
+
 module.exports = {
     getOutletPageContr,
     getOrderReportContr,
     getTargetContr,
-    createTargetContr
+    createTargetContr,
+    getActiReportContr,
 }

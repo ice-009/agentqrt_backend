@@ -1,7 +1,7 @@
 const httpStatus = require("http-status");
 const { nullChecker } = require('../../AddtionalFolders/helper/nullChecker');
 const ApiError = require('../../AddtionalFolders/utils/ApiError');
-
+const { Activity } = require("../../model/activity");
 const { Outlet } = require("../../model/outlet");
 const Order = require("../../model/order")
 const Target = require("../../model/target");
@@ -45,7 +45,7 @@ const createTarget = async function (body, id) {
 
 const getActivityService = async function (id) {
     try {
-        const outlet = await Outlet.findById(id);
+        // const outlet = await Outlet.find({ outletId: id });
         const activity = await Activity.find({ outletId: id });
         return activity;
     }
