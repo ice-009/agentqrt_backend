@@ -4,7 +4,7 @@ const ApiError = require('../../AddtionalFolders/utils/ApiError');
 const { Activity } = require("../../model/activity");
 const { Outlet } = require("../../model/outlet");
 const Order = require("../../model/order")
-const Target = require("../../model/target");
+const {TargetModel} = require("../../model/targetModel");
 
 
 const getOutletPage = async function (id) {
@@ -29,19 +29,19 @@ const orderReportService = async function (id) {
     }
 }
 
-const createTarget = async function (body, id) {
-    try {
-        return await Target.create({
-            TargetPeriod: body.TargetPeriod,
-            CollectionAmount: body.CollectionAmount,
-            StartDate: body.StartDate,
-            OutletId: id,
-        });
-    }
-    catch (error) {
-        throw new ApiError(httpStatus.BAD_REQUEST, error.message);
-    }
-}
+// const createTarget = async function (body, id) {
+//     try {
+//         return await Target.create({
+//             TargetPeriod: body.TargetPeriod,
+//             CollectionAmount: body.CollectionAmount,
+//             StartDate: body.StartDate,
+//             OutletId: id,
+//         });
+//     }
+//     catch (error) {
+//         throw new ApiError(httpStatus.BAD_REQUEST, error.message);
+//     }
+// }
 
 const getActivityService = async function (id) {
     try {
@@ -54,11 +54,26 @@ const getActivityService = async function (id) {
     }
 }
 
+const createTargetService = async function (body, id) {
+    try {
+        return await TargetModel.create({
+            TargetPeriod: body.TargetPeriod,
+            CollectionAmount: body.CollectionAmount,
+            StartDate: body.StartDate,
+            OutletId: id,
+        });
+    }
+    catch (error) {
+        throw new ApiError(httpStatus.BAD_REQUEST, error.message);
+    }
+}
+
 
 
 module.exports = {
     getOutletPage,
     orderReportService,
-    createTarget,
-    getActivityService
+    // createTarget,
+    getActivityService,
+    createTargetService,
 }

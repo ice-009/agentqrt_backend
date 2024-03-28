@@ -1,4 +1,4 @@
-const { getOutletPage, orderReportService, createTarget, getActivityService } = require('../service/outlet');
+const { getOutletPage, orderReportService, createTarget, getActivityService, createTargetService } = require('../service/outlet');
 // const {Employee} = require('../../model/')
 
 const getOutletPageContr = async function (req, res) {
@@ -17,22 +17,31 @@ const getOrderReportContr = async function (req, res) {
     const orders = await orderReportService(req.params.id);
     const id = req.params.id;
     // const
-        console.log(orders)
+    console.log(orders)
     res.render('pages/outlet_order_dash.ejs', { orders, id })
     // res.send(orders);
 
 }
 
 const getTargetContr = async function (req, res) {
-    res.render('admin/outlet/target')
+    const id = req.params.id;
+    res.render('pages/outlet_target_dash.ejs', { id })
 }
 
 const createTargetContr = async function (req, res) {
-    const target = await createTarget(req.body, req.params.id);
+    const target = await createTargetService(req.body, req.params.id);
     const id = req.params.id;
-    // res.send(target);
-    res.redirect('/admin/outlet/' + req.params.id);
-};
+    res.redirect('/api/v1/outlet/target'+id);
+    r
+}
+
+
+// const createTargetContr = async function (req, res) {
+//     const target = await createTarget(req.body, req.params.id);
+//     const id = req.params.id;
+//     // res.send(target);
+//     res.redirect('/admin/outlet/' + req.params.id);
+// };
 
 const getActiReportContr = async function (req, res) {
     const activities = await getActivityService(req.params.id);
@@ -40,8 +49,10 @@ const getActiReportContr = async function (req, res) {
     const id = req.params.id;
     console.log(activities, id)
 
-    res.render('pages/outlet_acti_dash.ejs', {activities, id})
+    res.render('pages/outlet_acti_dash.ejs', { activities, id })
 }
+
+
 
 module.exports = {
     getOutletPageContr,

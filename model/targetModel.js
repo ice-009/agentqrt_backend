@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
- const targetSchema = new mongoose.Schema({
-     TargetPeriod : {
-        type: Date,  
-        required: true, 
-    },
-    CollectionAmount : {
+const targetSchema = new mongoose.Schema({
+    TargetPeriod: {
         type: Number,
         required: true,
     },
-    StartDate : {
+    CollectionAmount: {
+        type: Number,
+        required: true,
+    },
+    StartDate: {
         type: Date,
         required: true,
     },
-    OutletId : {
+    OutletId: {
         type: String,
         required: true,
     },

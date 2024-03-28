@@ -154,7 +154,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/api/v1/admin/outlet/activities/<%= id %>">
+                <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="">
                   <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                   Activites Report
                 </a>
@@ -225,71 +225,35 @@
       </nav>
     <!-- End Navbar -->
     
-    <div class="container-fluid py-4c2" >
+    <div class="container-fluid py-4c2">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Orders Table</h6>
+                        <h6>Create Target</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0" style="padding-top: 1500px;">
-                            <table class="table align-items-center mb-0" style="padding-top: 1500px;">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Order ID</th>
-                                        <th scope="col">User ID</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Product ID</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Price/Piece</th>
-                                        <th scope="col">Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% orders.forEach(order => { %>
-                                        <tr>
-                                            <td><%= order.orderId %></td>
-                                            <td><%= order.userId %></td>
-                                            <td><%= order.date %></td>
-                                            <td>
-                                                <table>
-                                                    <% order.productId.forEach(productId => { %>
-                                                        <tr>
-                                                            <td><%= productId %></td>
-                                                        </tr>
-                                                    <% }); %>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <% order.quantity.forEach(quantity => { %>
-                                                        <tr>
-                                                            <td><%= quantity %></td>
-                                                        </tr>
-                                                    <% }); %>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table>
-                                                    <% order.pieceprice.forEach(pieceprice => { %>
-                                                        <tr>
-                                                            <td><%= pieceprice %></td>
-                                                        </tr>
-                                                    <% }); %>
-                                                </table>
-                                            </td>
-                                            <td><%= order.amount %></td>
-                                        </tr>
-                                    <% }); %>
-                                </tbody>
-                            </table>
-                        </div>
+                        <form action="/api/v1/admin/outlet/target/<%= id %>" method="POST" style="padding-top: 20px;">
+                            <div class="form-group">
+                                <label for="targetPeriod">Target Period:</label><br>
+                                <input type="text" id="TargetPeriod" name="TargetPeriod" class="form-control"><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="collectionAmount">Collection Amount:</label><br>
+                                <input type="text" id="CollectionAmount" name="CollectionAmount" class="form-control"><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="startDate">Start Date:</label><br>
+                                <input type="date" id="StartDate" name="StartDate" class="form-control"><br>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Target</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
        
   </main>
   <div class="fixed-plugin">
