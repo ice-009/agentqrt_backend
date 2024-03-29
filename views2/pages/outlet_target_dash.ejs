@@ -229,24 +229,26 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
-                    <div class="card-header pb-0">
+                    <div class="card-header pb-0" style="margin-right: 30%; padding-left: 100px;">
                         <h6>Create Target</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <form action="/api/v1/admin/outlet/target/<%= id %>" method="POST" style="padding-top: 20px;">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-right: 30%; padding-left: 100px;">
                                 <label for="targetPeriod">Target Period:</label><br>
                                 <input type="text" id="TargetPeriod" name="TargetPeriod" class="form-control"><br>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-right: 30%; padding-left: 100px;">
                                 <label for="collectionAmount">Collection Amount:</label><br>
                                 <input type="text" id="CollectionAmount" name="CollectionAmount" class="form-control"><br>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-right: 30%; padding-left: 100px;" >
                                 <label for="startDate">Start Date:</label><br>
                                 <input type="date" id="StartDate" name="StartDate" class="form-control"><br>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create Target</button>
+                            <div style="margin-right: 30%; padding-left: 100px;">
+                            <button type="submit" class="btn btn-primary" >Create Target</button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -31,8 +31,7 @@ const getTargetContr = async function (req, res) {
 const createTargetContr = async function (req, res) {
     const target = await createTargetService(req.body, req.params.id);
     const id = req.params.id;
-    res.redirect('/api/v1/outlet/target'+id);
-    r
+    res.redirect('/api/v1/admin/outlet/target/' + id);
 }
 
 
