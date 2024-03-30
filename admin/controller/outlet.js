@@ -1,4 +1,4 @@
-const { getOutletPage, orderReportService, createTarget, getActivityService, createTargetService } = require('../service/outlet');
+const { getOutletPage, orderReportService, createTarget, getActivityService, createTargetService, getTargetService, deleteTargetService } = require('../service/outlet');
 // const {Employee} = require('../../model/')
 
 const getOutletPageContr = async function (req, res) {
@@ -50,6 +50,19 @@ const getActiReportContr = async function (req, res) {
 
     res.render('pages/outlet_acti_dash.ejs', { activities, id })
 }
+const deleteTargetContr = async function (req, res) {
+    console.log("here")
+    const id = req.params.id;
+    const targetId = req.params.targetId;
+    await deleteTargetService(targetId);
+    res.redirect('/api/v1/admin/outlet/target/manage/' + id);
+}
+
+const manageTargetContr = async function (req, res) {
+    const id = req.params.id;
+    const targets = await getTargetService(id);
+    res.render('pages/outlet_targetmanage_dash.ejs', { targets, id });
+}
 
 
 
@@ -59,4 +72,6 @@ module.exports = {
     getTargetContr,
     createTargetContr,
     getActiReportContr,
+    deleteTargetContr,
+    manageTargetContr,
 }

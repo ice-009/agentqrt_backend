@@ -68,7 +68,24 @@ const createTargetService = async function (body, id) {
     }
 }
 
-
+const getTargetService = async function (id) {
+    try {
+        const target = await TargetModel.find({ OutletId: id });
+        return target;
+    }
+    catch (error) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'Target not found');
+    }
+}
+const deleteTargetService = async function (id) {
+    try {
+        const target = await TargetModel.findByIdAndDelete(id);
+        return target;
+    }   
+    catch (error) {
+        throw new ApiError(httpStatus.NOT_FOUND, 'Target not found');
+    }
+}
 
 module.exports = {
     getOutletPage,
@@ -76,4 +93,6 @@ module.exports = {
     // createTarget,
     getActivityService,
     createTargetService,
+    deleteTargetService,
+    getTargetService,
 }
