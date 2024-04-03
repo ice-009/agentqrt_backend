@@ -10,6 +10,9 @@ const OutletModel = require("../../model/outlet");
 const { DistributorModel } = require("../../model/distributor");
 const mongoose = require('mongoose')
 const { Activity } = require('../../model/activity')
+const  Product = require('../../model/products')
+const Stock  = require('../../model/stock')
+
 
 const createOutlet = async (outletBody) => {
 
@@ -49,6 +52,13 @@ const createOutlet = async (outletBody) => {
         console.log('aa')
         id = idBody[0].outletId + 1
     }
+    const products = await Product.find({}, '_id');
+    const stockItems = products.map(product => ({
+        product: product._id,
+        unit: 0,
+        cases: 0
+    }));
+    
 
 
 
@@ -83,6 +93,12 @@ const createOutlet = async (outletBody) => {
     console.log(outletBody.distributor)
     // const dist = DistributorModel.findOne({"_id":outletBody.distributor})
     // console.log(dist)
+
+    await Stock.create({
+        outletId: savedOut._id,
+        stock: stockItems
+    });
+    
     await DistributorModel.findByIdAndUpdate(
         outletBody.distributor,
         { $push: { outlets: mongoose.Types.ObjectId(savedOut._id) } },

@@ -6,6 +6,7 @@ const reportRoute = require('../../admin/routes/api/report.routes')
 const beatRoute = require('../../special_feautres/beat/routes/beat')
 const targetRoute = require('../../special_feautres/target/routes/target.routes')
 const productRoute = require('../../special_feautres/products/routes/index')
+const stockRoute = require('../../special_feautres/stocks/stocks.routes')
 
 const defaultRoutes = [
     {
@@ -37,6 +38,10 @@ const defaultRoutes = [
     {
         path: '/product',
         route:productRoute
+    },
+    {
+        path: '/stock',
+        route: stockRoute
     }
 
   ];
